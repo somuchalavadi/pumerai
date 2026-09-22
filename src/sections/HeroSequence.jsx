@@ -228,7 +228,6 @@ function HeroSequence({ onNavigate }) {
           alt="Hotel Pumerai exterior on NH-66 Honnavar"
           className="hero-static-img"
         />
-        <div className="hero-shade" />
         <div className="hero-copy">
           <p className="hero-eyebrow">PUMERAI</p>
           <h1 className="hero-heading">A quiet place to stay</h1>
@@ -260,7 +259,6 @@ function HeroSequence({ onNavigate }) {
     <section className="hero" id="home" ref={heroRef} aria-label="Hotel Pumerai">
       <div className="hero-pin" ref={pinRef}>
         <canvas ref={canvasRef} aria-label="Cinematic 240-frame sequence through Hotel Pumerai" />
-        <div className="hero-shade" />
 
         {!isReady && (
           <div className="loading-screen" aria-live="polite">
