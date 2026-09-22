@@ -10,22 +10,22 @@ const storyMoments = [
   {
     eyebrow: "PUMERAI",
     title: "A quiet place to stay",
-    copy: "Thoughtful spaces, considered details, and an atmosphere designed for slowing down.",
+    copy: "Contemporary hospitality on the coastal road of Honnavar.",
   },
   {
-    eyebrow: "ARRIVE",
-    title: "A place to slow down",
-    copy: "The journey softens into warm light, open air, and a calmer sense of time.",
+    eyebrow: "ARRIVE · NH-66",
+    title: "A coastal stopover",
+    copy: "The highway softens into sun-washed courtyard spaces, open air, and calm.",
   },
   {
-    eyebrow: "REST",
-    title: "Rooms made for rest",
-    copy: "Understated materials and gentle proportions shape an easy kind of comfort.",
+    eyebrow: "LEISURE & POOL",
+    title: "Resort-style comfort",
+    copy: "An outdoor glass-edge swimming pool framed by western coastal breezes.",
   },
   {
-    eyebrow: "DETAIL",
-    title: "Details worth noticing",
-    copy: "Nothing loud. Nothing hurried. Just the small gestures that make a stay feel considered.",
+    eyebrow: "HONNAVAR",
+    title: "A base for exploring",
+    copy: "Thoughtful spaces designed for travellers discovering Karnataka's coast.",
   },
 ];
 
@@ -45,7 +45,7 @@ function drawContainedImage(ctx, image, canvas, fit = "cover") {
   ctx.drawImage(image, x, y, width, height);
 }
 
-function HeroSequence() {
+function HeroSequence({ onNavigate }) {
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
   const pinRef = useRef(null);
@@ -109,7 +109,8 @@ function HeroSequence() {
     let nextIndex = 0;
     let loaded = 0;
     let failed = 0;
-    const concurrentLoads = window.innerWidth < 720 ? 5 : 9;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const concurrentLoads = isMobile ? 4 : 8;
 
     const loadFrame = (index) =>
       new Promise((resolve) => {
@@ -123,7 +124,7 @@ function HeroSequence() {
             if (index === 0) {
               resizeCanvas();
             }
-            if (loaded >= 48 || loaded + failed === FRAME_COUNT) {
+            if (loaded >= 36 || loaded + failed === FRAME_COUNT) {
               setIsReady(true);
             }
           }
@@ -173,13 +174,16 @@ function HeroSequence() {
       return undefined;
     }
 
+    const isMobile = window.innerWidth <= 768;
+    const scrollDistance = isMobile ? "+=230%" : "+=380%";
+
     const context = gsap.context(() => {
       ScrollTrigger.create({
         trigger: heroRef.current,
         pin: pinRef.current,
         start: "top top",
-        end: "+=390%",
-        scrub: 0.45,
+        end: scrollDistance,
+        scrub: isMobile ? 0.3 : 0.45,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
@@ -208,18 +212,44 @@ function HeroSequence() {
 
   const activeStory = storyMoments[storyIndex];
 
+  const handleScrollTo = (event, targetId) => {
+    event.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   if (prefersReducedMotion) {
     return (
-      <section className="hero hero-static" id="home" aria-label="Pumerai Hotel">
-        <img src={framePath(1)} alt="Pumerai Hotel at sunset" />
+      <section className="hero hero-static" id="home" aria-label="Hotel Pumerai">
+        <img
+          src={framePath(1)}
+          alt="Hotel Pumerai exterior on NH-66 Honnavar"
+          className="hero-static-img"
+        />
         <div className="hero-shade" />
         <div className="hero-copy">
-          <p>PUMERAI</p>
-          <h1>A quiet place to stay</h1>
-          <span>Thoughtful spaces, considered details, and an atmosphere designed for slowing down.</span>
+          <p className="hero-eyebrow">PUMERAI</p>
+          <h1 className="hero-heading">A quiet place to stay</h1>
+          <span className="hero-subtitle">
+            Contemporary hospitality on the coastal road of Honnavar.
+          </span>
           <div className="hero-actions">
-            <a href="#about">Explore the hotel</a>
-            <a href="#rooms">View rooms</a>
+            <a
+              href="#about"
+              className="hero-btn-primary"
+              onClick={(e) => handleScrollTo(e, "about")}
+            >
+              EXPLORE PUMERAI
+            </a>
+            <a
+              href="#rooms"
+              className="hero-btn-secondary"
+              onClick={(e) => handleScrollTo(e, "rooms")}
+            >
+              VIEW ROOMS
+            </a>
           </div>
         </div>
       </section>
@@ -227,15 +257,17 @@ function HeroSequence() {
   }
 
   return (
-    <section className="hero" id="home" ref={heroRef} aria-label="Pumerai Hotel">
+    <section className="hero" id="home" ref={heroRef} aria-label="Hotel Pumerai">
       <div className="hero-pin" ref={pinRef}>
-        <canvas ref={canvasRef} aria-label="Cinematic view through Pumerai Hotel" />
+        <canvas ref={canvasRef} aria-label="Cinematic 240-frame sequence through Hotel Pumerai" />
         <div className="hero-shade" />
 
         {!isReady && (
           <div className="loading-screen" aria-live="polite">
-            <p>PUMERAI</p>
-            <span>Preparing your stay...</span>
+            <p className="loading-logo">PUMERAI</p>
+            <span className="loading-caption">
+              Contemporary hospitality on the coastal road of Honnavar
+            </span>
             <div className="loading-track">
               <i style={{ width: `${progress}%` }} />
             </div>
@@ -245,18 +277,30 @@ function HeroSequence() {
 
         {isReady && loadedCount === 0 && (
           <div className="fallback-message">
-            <p>PUMERAI</p>
-            <span>The hotel story is available below while the visual sequence reloads.</span>
+            <p className="loading-logo">PUMERAI</p>
+            <span>The hotel story is available below while the visual sequence connects.</span>
           </div>
         )}
 
         <div className={`hero-copy ${isReady ? "is-visible" : ""}`} key={storyIndex}>
-          <p>{activeStory.eyebrow}</p>
-          <h1>{activeStory.title}</h1>
-          <span>{activeStory.copy}</span>
+          <p className="hero-eyebrow">{activeStory.eyebrow}</p>
+          <h1 className="hero-heading">{activeStory.title}</h1>
+          <span className="hero-subtitle">{activeStory.copy}</span>
           <div className="hero-actions">
-            <a href="#about">Explore the hotel</a>
-            <a href="#rooms">View rooms</a>
+            <a
+              href="#about"
+              className="hero-btn-primary"
+              onClick={(e) => handleScrollTo(e, "about")}
+            >
+              EXPLORE PUMERAI
+            </a>
+            <a
+              href="#rooms"
+              className="hero-btn-secondary"
+              onClick={(e) => handleScrollTo(e, "rooms")}
+            >
+              VIEW ROOMS
+            </a>
           </div>
         </div>
 

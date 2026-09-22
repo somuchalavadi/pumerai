@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import ProgressingPage from "./components/ProgressingPage.jsx";
+import GalleryPage from "./components/GalleryPage.jsx";
+import ContactPage from "./components/ContactPage.jsx";
 import HeroSequence from "./sections/HeroSequence.jsx";
 import About from "./sections/About.jsx";
 import Rooms from "./sections/Rooms.jsx";
+import Experience from "./sections/Experience.jsx";
+import Dining from "./sections/Dining.jsx";
+import Location from "./sections/Location.jsx";
 import { useSectionReveals } from "./hooks/useSectionReveals.js";
 
 const routes = new Set(["/", "/gallery", "/contact"]);
@@ -13,12 +17,15 @@ function normalizePath(path) {
   return routes.has(path) ? path : "/";
 }
 
-function HomePage() {
+function HomePage({ onNavigate }) {
   return (
     <main>
-      <HeroSequence />
+      <HeroSequence onNavigate={onNavigate} />
       <About />
-      <Rooms />
+      <Rooms onNavigate={onNavigate} />
+      <Experience />
+      <Dining />
+      <Location onNavigate={onNavigate} />
     </main>
   );
 }
@@ -68,19 +75,19 @@ function App() {
 
   const page =
     path === "/gallery" ? (
-      <ProgressingPage title="Gallery" />
+      <GalleryPage />
     ) : path === "/contact" ? (
-      <ProgressingPage title="Contact" />
+      <ContactPage />
     ) : (
-      <HomePage />
+      <HomePage onNavigate={navigate} />
     );
 
   return (
-    <>
+    <div className="site-wrapper">
       <Header currentPath={path} onNavigate={navigate} />
       {page}
       <Footer onNavigate={navigate} />
-    </>
+    </div>
   );
 }
 
