@@ -12,20 +12,50 @@ const ROOM_OPTIONS = [
   })),
 ];
 
-function getTomorrowDateString(offsetDays = 1) {
-  const date = new Date();
-  date.setDate(date.getDate() + offsetDays);
-  return date.toISOString().split("T")[0];
+function formatLocalDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
-export default function BookingBar({ initialRoom = null }) {
+function getTodayDateString() {
+  return formatLocalDate(new Date());
+}
+
+function getOffsetDateString(baseDateStr, offsetDays = 1) {
+  let d;
+  if (baseDateStr && typeof baseDateStr === "string") {
+    const parts = baseDateStr.split("-").map(Number);
+    if (parts.length === 3 && !isNaN(parts[0]) && !isNaN(parts[1]) && !isNaN(parts[2])) {
+      d = new Date(parts[0], parts[1] - 1, parts[2]);
+    } else {
+      d = new Date();
+    }
+  } else {
+    d = new Date();
+  }
+  d.setDate(d.getDate() + offsetDays);
+  return formatLocalDate(d);
+}
+
+function formatDisplayDate(dateStr) {
+  if (!dateStr) return "";
+  const parts = dateStr.split("-").map(Number);
+  if (parts.length !== 3 || isNaN(parts[0])) return dateStr;
+  const d = new Date(parts[0], parts[1] - 1, parts[2]);
+  return d.toLocaleDateString("en-IN", { month: "short", day: "numeric" });
+}
+
+export default function BookingBar({ initialRoom = null, isHomeSection = false }) {
   const checkInId = useId();
   const checkOutId = useId();
   const guestsId = useId();
   const roomId = useId();
 
-  const [checkIn, setCheckIn] = useState(() => getTomorrowDateString(1));
-  const [checkOut, setCheckOut] = useState(() => getTomorrowDateString(2));
+  const todayStr = getTodayDateString();
+  const [checkIn, setCheckIn] = useState(() => getTodayDateString());
+  const [checkOut, setCheckOut] = useState(() => getOffsetDateString(getTodayDateString(), 1));
   const [guests, setGuests] = useState("2 Adults");
   const [selectedRoom, setSelectedRoom] = useState(initialRoom || "all");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,22 +78,43 @@ export default function BookingBar({ initialRoom = null }) {
     return () => window.removeEventListener("pumerai:open-booking", handleOpenBooking);
   }, []);
 
-  // Sync check-out if check-in is set after check-out
+  // Handle Check-In selection: cannot be before today, and if checkOut <= newCheckIn, auto-advance checkOut
   const handleCheckInChange = (e) => {
     const newCheckIn = e.target.value;
-    setCheckIn(newCheckIn);
-    if (new Date(newCheckIn) >= new Date(checkOut)) {
-      const nextDay = new Date(newCheckIn);
-      nextDay.setDate(nextDay.getDate() + 1);
-      setCheckOut(nextDay.toISOString().split("T")[0]);
+    if (!newCheckIn) return;
+    const effectiveCheckIn = newCheckIn < todayStr ? todayStr : newCheckIn;
+    setCheckIn(effectiveCheckIn);
+
+    if (checkOut <= effectiveCheckIn) {
+      setCheckOut(getOffsetDateString(effectiveCheckIn, 1));
+    }
+  };
+
+  // Handle Check-Out selection: cannot be before or equal to checkIn
+  const handleCheckOutChange = (e) => {
+    const newCheckOut = e.target.value;
+    if (!newCheckOut) return;
+    const minCheckOut = getOffsetDateString(checkIn, 1);
+    if (newCheckOut < minCheckOut) {
+      setCheckOut(minCheckOut);
+    } else {
+      setCheckOut(newCheckOut);
     }
   };
 
   // Calculate nights
-  const nights = Math.max(
-    1,
-    Math.round((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24)) || 1
-  );
+  const calculateNights = (inDate, outDate) => {
+    if (!inDate || !outDate) return 1;
+    const parts1 = inDate.split("-").map(Number);
+    const parts2 = outDate.split("-").map(Number);
+    if (parts1.length !== 3 || parts2.length !== 3) return 1;
+    const t1 = new Date(parts1[0], parts1[1] - 1, parts1[2]).getTime();
+    const t2 = new Date(parts2[0], parts2[1] - 1, parts2[2]).getTime();
+    const diff = Math.round((t2 - t1) / (1000 * 60 * 60 * 24));
+    return Math.max(1, diff || 1);
+  };
+
+  const nights = calculateNights(checkIn, checkOut);
 
   const matchedRoom = ROOM_OPTIONS.find((r) => r.id === selectedRoom) || ROOM_OPTIONS[0];
   const baseRate = matchedRoom.price;
@@ -98,8 +149,8 @@ export default function BookingBar({ initialRoom = null }) {
 
   return (
     <>
-      {/* Desktop & Tablet Sticky Booking Bar */}
-      <aside className="sticky-booking-bar" aria-label="Quick Room Availability & Booking">
+      {/* Desktop & Tablet / Home Booking Bar */}
+      <aside className={`sticky-booking-bar ${isHomeSection ? "booking-bar-home" : ""}`} aria-label="Quick Room Availability & Booking">
         <div className="booking-bar-inner">
           {/* Trust Badge */}
           <div className="booking-trust-badge" title="Verified rating on Google Stays">
@@ -114,29 +165,55 @@ export default function BookingBar({ initialRoom = null }) {
           {/* Form Fields */}
           <div className="booking-inputs-group">
             <div className="booking-field">
-              <label htmlFor={checkInId} className="booking-label">
+              <label
+                htmlFor={checkInId}
+                className="booking-label"
+                onClick={() => {
+                  try {
+                    document.getElementById(checkInId)?.showPicker?.();
+                  } catch {}
+                }}
+              >
                 CHECK-IN
               </label>
               <input
                 id={checkInId}
                 type="date"
-                min={getTomorrowDateString(0)}
+                min={todayStr}
                 value={checkIn}
                 onChange={handleCheckInChange}
+                onClick={(e) => {
+                  try {
+                    e.target.showPicker?.();
+                  } catch {}
+                }}
                 className="booking-input"
               />
             </div>
 
             <div className="booking-field">
-              <label htmlFor={checkOutId} className="booking-label">
+              <label
+                htmlFor={checkOutId}
+                className="booking-label"
+                onClick={() => {
+                  try {
+                    document.getElementById(checkOutId)?.showPicker?.();
+                  } catch {}
+                }}
+              >
                 CHECK-OUT
               </label>
               <input
                 id={checkOutId}
                 type="date"
-                min={checkIn}
+                min={getOffsetDateString(checkIn, 1)}
                 value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
+                onChange={handleCheckOutChange}
+                onClick={(e) => {
+                  try {
+                    e.target.showPicker?.();
+                  } catch {}
+                }}
                 className="booking-input"
               />
             </div>
@@ -197,30 +274,31 @@ export default function BookingBar({ initialRoom = null }) {
       </aside>
 
       {/* Mobile Fixed Bottom Booking Bar */}
-      <aside className="mobile-bottom-booking-bar" aria-label="Mobile Availability Bar">
-        <div className="mobile-booking-summary" onClick={() => setIsModalOpen(true)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}>
-          <div className="mobile-summary-dates">
-            <span className="summary-tag">DATES</span>
-            <span className="summary-val">
-              {new Date(checkIn).toLocaleDateString("en-IN", { month: "short", day: "numeric" })} –{" "}
-              {new Date(checkOut).toLocaleDateString("en-IN", { month: "short", day: "numeric" })}
-            </span>
+      {!isHomeSection && (
+        <aside className="mobile-bottom-booking-bar" aria-label="Mobile Availability Bar">
+          <div className="mobile-booking-summary" onClick={() => setIsModalOpen(true)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}>
+            <div className="mobile-summary-dates">
+              <span className="summary-tag">DATES</span>
+              <span className="summary-val">
+                {formatDisplayDate(checkIn)} – {formatDisplayDate(checkOut)}
+              </span>
+            </div>
+            <div className="mobile-summary-rating">
+              <span className="mobile-rating-pill">10/10</span>
+              <span className="mobile-nights-text">{nights} {nights > 1 ? "Nights" : "Night"}</span>
+            </div>
           </div>
-          <div className="mobile-summary-rating">
-            <span className="mobile-rating-pill">10/10</span>
-            <span className="mobile-nights-text">{nights} {nights > 1 ? "Nights" : "Night"}</span>
-          </div>
-        </div>
 
-        <button
-          type="button"
-          className="button-primary mobile-booking-btn"
-          onClick={() => setIsModalOpen(true)}
-          aria-label="Check Availability and Book Direct"
-        >
-          CHECK DATES
-        </button>
-      </aside>
+          <button
+            type="button"
+            className="button-primary mobile-booking-btn"
+            onClick={() => setIsModalOpen(true)}
+            aria-label="Check Availability and Book Direct"
+          >
+            CHECK DATES
+          </button>
+        </aside>
+      )}
 
       {/* Interactive Availability & Direct Booking Modal */}
       {isModalOpen && (

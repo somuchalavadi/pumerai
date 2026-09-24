@@ -245,22 +245,6 @@ export default function HeroSequence({ onNavigate }) {
             Hotel Pumerai is a 3-star hotel on NH-66 near Ramateertha Cross in Honnavar, Karnataka,
             5 km from Kasarkod Beach and 2.8 km from Sharavati River, with 40 rooms, an indoor pool, and two on-site restaurants.
           </p>
-          <div className="hero-actions">
-            <button
-              type="button"
-              className="button-primary hero-btn-primary"
-              onClick={handleOpenBookingModal}
-            >
-              CHECK AVAILABILITY
-            </button>
-            <a
-              href="#rooms"
-              className="button-secondary hero-btn-secondary"
-              onClick={(e) => handleScrollTo(e, "rooms")}
-            >
-              VIEW ROOMS &amp; RATES
-            </a>
-          </div>
         </div>
       </section>
     );
@@ -302,24 +286,6 @@ export default function HeroSequence({ onNavigate }) {
           <p className="hero-eyebrow">{activeStory.eyebrow}</p>
           <h1 className="hero-heading">{activeStory.title}</h1>
           <p className="hero-subtitle">{activeStory.copy}</p>
-
-          <div className="hero-actions">
-            <button
-              type="button"
-              className="button-primary hero-btn-primary"
-              onClick={handleOpenBookingModal}
-              aria-label="Check Room Availability and Book Direct"
-            >
-              CHECK AVAILABILITY
-            </button>
-            <a
-              href="#rooms"
-              className="button-secondary hero-btn-secondary"
-              onClick={(e) => handleScrollTo(e, "rooms")}
-            >
-              VIEW ROOMS &amp; RATES
-            </a>
-          </div>
         </div>
 
         <div className="scroll-cue" aria-hidden="true">

@@ -4,7 +4,9 @@ import Footer from "./components/Footer.jsx";
 import BookingBar from "./components/BookingBar.jsx";
 import MobileQuickActions from "./components/MobileQuickActions.jsx";
 import RoomsPage from "./components/RoomsPage.jsx";
+import DiningPage from "./components/DiningPage.jsx";
 import GalleryPage from "./components/GalleryPage.jsx";
+import LocationPage from "./components/LocationPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
 import HeroSequence from "./sections/HeroSequence.jsx";
 import About from "./sections/About.jsx";
@@ -18,7 +20,7 @@ import Location from "./sections/Location.jsx";
 import FAQ from "./sections/FAQ.jsx";
 import { useSectionReveals } from "./hooks/useSectionReveals.js";
 
-const routes = new Set(["/", "/rooms", "/gallery", "/contact"]);
+const routes = new Set(["/", "/rooms", "/dining", "/gallery", "/location", "/contact"]);
 
 function normalizePath(path) {
   return routes.has(path) ? path : "/";
@@ -28,6 +30,7 @@ function HomePage({ onNavigate }) {
   return (
     <main id="main-content">
       <HeroSequence onNavigate={onNavigate} />
+      <BookingBar isHomeSection={true} />
       <About />
       <RoomsPreview onNavigate={onNavigate} />
       <OffersBanner />
@@ -71,8 +74,8 @@ function App() {
       return;
     }
 
-    // For subpages (/rooms, /gallery, /contact)
-    if (path === "/rooms" && pendingSection) {
+    // For subpages (/rooms, /dining, /gallery, /location, /contact)
+    if (pendingSection) {
       window.requestAnimationFrame(() => {
         const target = document.getElementById(pendingSection);
         if (target) {
@@ -100,8 +103,12 @@ function App() {
   const page =
     path === "/rooms" ? (
       <RoomsPage />
+    ) : path === "/dining" ? (
+      <DiningPage />
     ) : path === "/gallery" ? (
       <GalleryPage />
+    ) : path === "/location" ? (
+      <LocationPage />
     ) : path === "/contact" ? (
       <ContactPage />
     ) : (
@@ -111,7 +118,7 @@ function App() {
   return (
     <div className="site-wrapper">
       <Header currentPath={path} onNavigate={navigate} />
-      <BookingBar />
+      {path !== "/" && <BookingBar />}
       {page}
       <Footer onNavigate={navigate} />
       <MobileQuickActions />

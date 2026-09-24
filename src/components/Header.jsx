@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import LogoMark from "./LogoMark.jsx";
 
 const navItems = [
-  { label: "Home", route: "/", section: "home" },
+  { label: "Home", route: "/" },
   { label: "Rooms", route: "/rooms" },
-  { label: "Dining", route: "/", section: "dining" },
+  { label: "Dining", route: "/dining" },
   { label: "Gallery", route: "/gallery" },
-  { label: "Location", route: "/", section: "location" },
+  { label: "Location", route: "/location" },
   { label: "Contact", route: "/contact" },
 ];
 
@@ -36,14 +36,11 @@ export default function Header({ currentPath, onNavigate }) {
     event.preventDefault();
     setIsOpen(false);
 
-    if (item.route === "/" && currentPath === "/") {
-      const target = document.getElementById(item.section || "home");
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
+    if (item.route === currentPath) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
       return;
     }
 
@@ -62,7 +59,7 @@ export default function Header({ currentPath, onNavigate }) {
         <a
           className="brand"
           href="/"
-          onClick={(event) => handleNavigate(event, { route: "/", section: "home" })}
+          onClick={(event) => handleNavigate(event, { route: "/" })}
           aria-label="Hotel Pumerai Home"
         >
           <LogoMark />
@@ -75,13 +72,11 @@ export default function Header({ currentPath, onNavigate }) {
         {/* Desktop Navigation: Home | Rooms | Dining | Gallery | Location | Contact */}
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navItems.map((item) => {
-            const isActive =
-              (item.route === currentPath && !item.section) ||
-              (currentPath === "/" && item.route === "/" && item.section === "home");
+            const isActive = item.route === currentPath;
             return (
               <a
-                key={`${item.route}-${item.section || item.label}`}
-                href={item.section ? `/#${item.section}` : item.route}
+                key={item.route}
+                href={item.route}
                 className={isActive ? "is-active" : ""}
                 onClick={(event) => handleNavigate(event, item)}
               >
@@ -138,13 +133,11 @@ export default function Header({ currentPath, onNavigate }) {
 
           <nav className="mobile-drawer-nav" aria-label="Mobile navigation">
             {navItems.map((item) => {
-              const isActive =
-                (item.route === currentPath && !item.section) ||
-                (currentPath === "/" && item.route === "/" && item.section === "home");
+              const isActive = item.route === currentPath;
               return (
                 <a
-                  key={`${item.route}-${item.section || item.label}`}
-                  href={item.section ? `/#${item.section}` : item.route}
+                  key={item.route}
+                  href={item.route}
                   className={`mobile-nav-link ${isActive ? "is-active" : ""}`}
                   onClick={(e) => handleNavigate(e, item)}
                 >

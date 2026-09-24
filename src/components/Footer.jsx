@@ -1,12 +1,12 @@
 import LogoMark from "./LogoMark.jsx";
 
 const navLinks = [
-  { label: "Home", route: "/", section: "home" },
+  { label: "Home", route: "/" },
   { label: "Rooms & Suites", route: "/rooms" },
-  { label: "Dining & Menus", route: "/", section: "dining" },
+  { label: "Dining & Menus", route: "/dining" },
   { label: "Amenities & Pool", route: "/", section: "amenities" },
   { label: "Visual Gallery", route: "/gallery" },
-  { label: "Location & Transit", route: "/", section: "location" },
+  { label: "Location & Transit", route: "/location" },
   { label: "Guest Reviews", route: "/", section: "reviews" },
   { label: "Direct Offers", route: "/", section: "offers" },
   { label: "FAQ & Policies", route: "/", section: "faq" },

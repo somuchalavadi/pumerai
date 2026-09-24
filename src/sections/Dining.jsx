@@ -129,7 +129,7 @@ const venuesData = [
   },
 ];
 
-export default function Dining() {
+export default function Dining({ sectionId = "dining", headingId = "dining-heading" }) {
   const [activeMenuVenue, setActiveMenuVenue] = useState(null);
 
   const handleOpenMenu = (venue) => {
@@ -141,7 +141,7 @@ export default function Dining() {
   };
 
   return (
-    <section className="section dining-section" id="dining" aria-labelledby="dining-heading">
+    <section className="section dining-section" id={sectionId} aria-labelledby={headingId}>
       <div className="section-container">
         {/* Section Header */}
         <header className="section-header-split" data-reveal>
@@ -150,7 +150,7 @@ export default function Dining() {
               <span className="accent-pip" />
               <span>ON-SITE RESTAURANTS &bull; HOTEL PUMERAI</span>
             </div>
-            <h2 id="dining-heading" className="section-title">
+            <h2 id={headingId} className="section-title">
               Coastal culinary <br />
               <span className="title-italic">journeys on NH-66.</span>
             </h2>
