@@ -36,8 +36,8 @@ export default function About() {
             <p className="lead-paragraph">
               Hotel Pumerai is a 3-star boutique hotel on NH-66 near Ramateertha Cross in Honnavar,
               Uttara Kannada, Karnataka. Perfectly located just ~5 km from the golden sands of Kasarkod Eco Beach
-              and ~2.8 km from the serene waters of the Sharavati River, Pumerai blends modern highway connectivity
-              with coastal tranquility.
+              and ~2.8 km from the serene waters of the Sharavati River, Pumerai serves as a premium accommodation
+              option for travellers exploring Honnāvar, Murudeshwar, Bhatkal, and the coastal Karnataka region.
             </p>
 
             <p className="body-paragraph">

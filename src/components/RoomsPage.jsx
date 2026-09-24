@@ -40,22 +40,15 @@ export default function RoomsPage() {
         <div className="section-container">
           <div className="editorial-tag">
             <span className="accent-pip" />
-            <span>ALL ACCOMMODATION &bull; 7 ROOM CATEGORIES</span>
+            <span>ACCOMMODATION &bull; HONNĀVAR</span>
           </div>
           <h1 id="rooms-page-heading" className="page-main-heading">
             Rooms &amp; Suites at <br />
             <span className="title-italic">Hotel Pumerai Honnavar</span>
           </h1>
           <p className="page-main-desc">
-            Explore our complete collection of 40 contemporary guestrooms across seven distinct categories.
-            Every stay includes complimentary daily hot breakfast, high-speed WiFi (100+ Mbps), indoor pool access,
-            and secure parking along NH-66 near Ramateertha Cross.
+            Explore our collection of contemporary rooms and suites in Honnāvar.
           </p>
-
-          <div className="direct-booking-pill" style={{ marginTop: "16px" }}>
-            <span className="pill-check">&#x2713;</span>
-            <span>Best Rate Guarantee: Book directly and save 10% vs OTAs</span>
-          </div>
         </div>
       </section>
 

@@ -21,11 +21,11 @@ const transitDistances = [
     type: "Transit",
   },
   {
-    name: "Honnavar KSRTC Central Bus Stand",
-    distance: "~2.5 km",
-    time: "6 min drive",
-    desc: "Frequent intercity coastal and interstate bus transit.",
-    type: "Transit",
+    name: "Apsarakonda Waterfalls & Hillock",
+    distance: "~8 km",
+    time: "12 min drive",
+    desc: "Coastal freshwater waterfall, serene lagoon, and cliff-top Arabian Sea sunset view.",
+    type: "Nature",
   },
   {
     name: "Historic Mirjan Fort",
@@ -38,8 +38,15 @@ const transitDistances = [
     name: "Murudeshwar Temple & Beach",
     distance: "~26 km",
     time: "35 min drive",
-    desc: "Home to the world's second-tallest Shiva statue and Arabian Sea viewpoints.",
+    desc: "Home to the world's second-tallest Shiva statue, Raja Gopura, and Arabian Sea viewpoints.",
     type: "Temple",
+  },
+  {
+    name: "Bhatkal Heritage Coast",
+    distance: "~38 km",
+    time: "45 min drive",
+    desc: "Historic coastal port along NH-66 with heritage architecture and tranquil shores.",
+    type: "Coastal Town",
   },
   {
     name: "Idagunji Mahaganapati Temple",
@@ -52,8 +59,29 @@ const transitDistances = [
     name: "Gokarna (Om Beach & Kudle)",
     distance: "~48 km",
     time: "55 min drive",
-    desc: "Renowned coastal temple town and rugged beach trekking landscapes.",
+    desc: "Renowned coastal temple town and rugged beach trekking landscapes in Uttara Kannada.",
     type: "Day Trip",
+  },
+  {
+    name: "Sirsi & Western Ghats",
+    distance: "~68 km",
+    time: "1 hr 30 min drive",
+    desc: "Gateway to Sahyadri rainforests, spice plantations, and waterfalls accessible via NH-69.",
+    type: "Eco Tourism",
+  },
+  {
+    name: "Karwar & Kali River Estuary",
+    distance: "~90 km",
+    time: "1 hr 45 min drive",
+    desc: "Uttara Kannada district headquarters, Tagore Beach, and scenic coastal highway transit.",
+    type: "District Base",
+  },
+  {
+    name: "Honnavar KSRTC Central Bus Stand",
+    distance: "~2.5 km",
+    time: "6 min drive",
+    desc: "Frequent intercity coastal and interstate bus transit.",
+    type: "Transit",
   },
 ];
 
@@ -68,33 +96,35 @@ const hotelPolicies = [
   { label: "CANCELLATION", value: "Free cancellation up to 24 hours prior to check-in for direct bookings" },
 ];
 
-export default function Location() {
+export default function Location({ isStandalonePage = false }) {
   const officialGoogleMapsLink = "https://maps.app.goo.gl/rCfTnw9t8Dp58mga7";
 
   return (
     <section className="section location-section" id="location" aria-labelledby="location-heading">
       <div className="section-container">
-        {/* Section Header */}
-        <header className="section-header-split" data-reveal>
-          <div className="header-meta">
-            <div className="editorial-tag">
-              <span className="accent-pip" />
-              <span>LOCATION &amp; GETTING HERE &bull; NH-66</span>
+        {/* Section Header (homepage only; standalone location page uses its own single hero intro) */}
+        {!isStandalonePage && (
+          <header className="section-header-split" data-reveal>
+            <div className="header-meta">
+              <div className="editorial-tag">
+                <span className="accent-pip" />
+                <span>LOCATION &amp; GETTING HERE &bull; NH-66</span>
+              </div>
+              <h2 id="location-heading" className="section-title">
+                On the coastal <br />
+                <span className="title-italic">road of Honnavar.</span>
+              </h2>
             </div>
-            <h2 id="location-heading" className="section-title">
-              On the coastal <br />
-              <span className="title-italic">road of Honnavar.</span>
-            </h2>
-          </div>
-          <div className="header-summary-block">
-            <p className="header-summary">
-              Hotel Pumerai is situated directly on National Highway 66 near Ramateertha Cross in Honnavar,
-              Uttara Kannada, Karnataka. Perfectly positioned for effortless vehicular transit between Goa,
-              Gokarna, Murudeshwar, and Mangalore, while serving as the premier base for exploring Kasarkod Beach
-              and the Sharavati River backwaters.
-            </p>
-          </div>
-        </header>
+            <div className="header-summary-block">
+              <p className="header-summary">
+                Hotel Pumerai is situated directly on National Highway 66 near Ramateertha Cross in Honnavar,
+                Uttara Kannada, Karnataka. Perfectly positioned for effortless vehicular transit between Goa,
+                Gokarna, Murudeshwar, Bhatkal, and Mangalore, our hotel serves as a comfortable, premium accommodation
+                base for exploring coastal Karnataka, Kasarkod Eco Beach, and the Sharavati River backwaters.
+              </p>
+            </div>
+          </header>
+        )}
 
         {/* Embedded Map & Address Card Block */}
         <div className="location-map-row" data-reveal>

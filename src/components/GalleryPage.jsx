@@ -7,15 +7,14 @@ export default function GalleryPage() {
         <div className="section-container">
           <div className="editorial-tag">
             <span className="accent-pip" />
-            <span>PHOTOGRAPHY &bull; HOTEL PUMERAI HONNAVAR</span>
+            <span>PHOTOGRAPHY &bull; HONNĀVAR</span>
           </div>
           <h1 className="page-main-heading">
             Visual Archive &amp; <br />
             <span className="title-italic">Property Gallery</span>
           </h1>
           <p className="page-main-desc">
-            Explore authentic photography of our 40 contemporary guestrooms, glass-edge swimming pool,
-            on-site coastal dining, and our serene location along NH-66 near Ramateertha Cross.
+            Explore Hotel Pumerai, from our rooms and pool to dining and coastal surroundings.
           </p>
         </div>
       </div>

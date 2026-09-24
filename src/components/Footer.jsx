@@ -4,6 +4,7 @@ const navLinks = [
   { label: "Home", route: "/" },
   { label: "Rooms & Suites", route: "/rooms" },
   { label: "Dining & Menus", route: "/dining" },
+  { label: "Madira Bar & Lounge", route: "/bar-lounge" },
   { label: "Amenities & Pool", route: "/", section: "amenities" },
   { label: "Visual Gallery", route: "/gallery" },
   { label: "Location & Transit", route: "/location" },

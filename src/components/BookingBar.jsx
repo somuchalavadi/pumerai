@@ -44,7 +44,9 @@ function formatDisplayDate(dateStr) {
   const parts = dateStr.split("-").map(Number);
   if (parts.length !== 3 || isNaN(parts[0])) return dateStr;
   const d = new Date(parts[0], parts[1] - 1, parts[2]);
-  return d.toLocaleDateString("en-IN", { month: "short", day: "numeric" });
+  const day = d.getDate();
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  return `${day} ${months[d.getMonth()]}`;
 }
 
 export default function BookingBar({ initialRoom = null, isHomeSection = false }) {
@@ -149,156 +151,201 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
 
   return (
     <>
-      {/* Desktop & Tablet / Home Booking Bar */}
+      {/* Unified Responsive Booking Bar (Desktop & Mobile) */}
       <aside className={`sticky-booking-bar ${isHomeSection ? "booking-bar-home" : ""}`} aria-label="Quick Room Availability & Booking">
         <div className="booking-bar-inner">
-          {/* Trust Badge */}
-          <div className="booking-trust-badge" title="Verified rating on Google Stays">
-            <div className="rating-pill">
-              <span className="rating-score">10/10</span>
-              <span className="rating-label">EXCEPTIONAL</span>
+          {/* Desktop Layout (min-width: 900px) */}
+          <div className="booking-desktop-view">
+            {/* Trust Badge */}
+            <div className="booking-trust-badge" title="Verified rating on Google Stays">
+              <div className="rating-pill">
+                <span className="rating-score">10/10</span>
+                <span className="rating-label">EXCEPTIONAL</span>
+              </div>
+              <span className="trust-divider">|</span>
+              <span className="trust-perk">Direct Savings: 10% Off</span>
             </div>
-            <span className="trust-divider">|</span>
-            <span className="trust-perk">Direct Savings: 10% Off</span>
+
+            {/* Form Fields */}
+            <div className="booking-inputs-group">
+              <div className="booking-field">
+                <label
+                  htmlFor={checkInId}
+                  className="booking-label"
+                  onClick={() => {
+                    try {
+                      document.getElementById(checkInId)?.showPicker?.();
+                    } catch {}
+                  }}
+                >
+                  CHECK-IN
+                </label>
+                <input
+                  id={checkInId}
+                  type="date"
+                  min={todayStr}
+                  value={checkIn}
+                  onChange={handleCheckInChange}
+                  onClick={(e) => {
+                    try {
+                      e.target.showPicker?.();
+                    } catch {}
+                  }}
+                  className="booking-input"
+                />
+              </div>
+
+              <div className="booking-field">
+                <label
+                  htmlFor={checkOutId}
+                  className="booking-label"
+                  onClick={() => {
+                    try {
+                      document.getElementById(checkOutId)?.showPicker?.();
+                    } catch {}
+                  }}
+                >
+                  CHECK-OUT
+                </label>
+                <input
+                  id={checkOutId}
+                  type="date"
+                  min={getOffsetDateString(checkIn, 1)}
+                  value={checkOut}
+                  onChange={handleCheckOutChange}
+                  onClick={(e) => {
+                    try {
+                      e.target.showPicker?.();
+                    } catch {}
+                  }}
+                  className="booking-input"
+                />
+              </div>
+
+              <div className="booking-field">
+                <label htmlFor={guestsId} className="booking-label">
+                  GUESTS
+                </label>
+                <select
+                  id={guestsId}
+                  value={guests}
+                  onChange={(e) => setGuests(e.target.value)}
+                  className="booking-input booking-select"
+                >
+                  <option value="1 Adult">1 Adult</option>
+                  <option value="2 Adults">2 Adults</option>
+                  <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
+                  <option value="3 Adults">3 Adults</option>
+                  <option value="4+ Family">4+ Family</option>
+                </select>
+              </div>
+
+              <div className="booking-field booking-room-field">
+                <label htmlFor={roomId} className="booking-label">
+                  ROOM TYPE
+                </label>
+                <select
+                  id={roomId}
+                  value={selectedRoom}
+                  onChange={(e) => setSelectedRoom(e.target.value)}
+                  className="booking-input booking-select"
+                >
+                  {ROOM_OPTIONS.map((opt) => (
+                    <option key={opt.id} value={opt.id}>
+                      {opt.name} {opt.id !== "all" ? `(from ₹${opt.price.toLocaleString("en-IN")})` : ""}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Action CTA */}
+            <div className="booking-action">
+              <button
+                type="button"
+                className="button-primary booking-submit-btn"
+                onClick={() => setIsModalOpen(true)}
+                aria-label="Check Room Availability and Rates"
+              >
+                <span>CHECK AVAILABILITY</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          {/* Form Fields */}
-          <div className="booking-inputs-group">
-            <div className="booking-field">
-              <label
-                htmlFor={checkInId}
-                className="booking-label"
-                onClick={() => {
-                  try {
-                    document.getElementById(checkInId)?.showPicker?.();
-                  } catch {}
-                }}
-              >
-                CHECK-IN
-              </label>
-              <input
-                id={checkInId}
-                type="date"
-                min={todayStr}
-                value={checkIn}
-                onChange={handleCheckInChange}
-                onClick={(e) => {
-                  try {
-                    e.target.showPicker?.();
-                  } catch {}
-                }}
-                className="booking-input"
-              />
+          {/* Mobile Layout (max-width: 899px) - Compact Mobile Widget matching Reference */}
+          <div className="booking-mobile-view">
+            <div className="booking-mobile-content">
+              <div className="mobile-dates-row">
+                <span
+                  className="mobile-dates-tag"
+                  onClick={() => {
+                    try {
+                      document.getElementById("mobile-checkin-date")?.showPicker?.();
+                    } catch {}
+                  }}
+                >
+                  DATES
+                </span>
+                <div className="mobile-dates-range">
+                  <label className="mobile-date-label-field" title="Tap to select Check-in date">
+                    <span className="mobile-date-text">{formatDisplayDate(checkIn)}</span>
+                    <input
+                      id="mobile-checkin-date"
+                      type="date"
+                      min={todayStr}
+                      value={checkIn}
+                      onChange={handleCheckInChange}
+                      onClick={(e) => {
+                        try {
+                          e.target.showPicker?.();
+                        } catch {}
+                      }}
+                      className="mobile-native-date-input"
+                      aria-label="Select Check-in Date"
+                    />
+                  </label>
+                  <span className="mobile-date-dash">&ndash;</span>
+                  <label className="mobile-date-label-field" title="Tap to select Check-out date">
+                    <span className="mobile-date-text">{formatDisplayDate(checkOut)}</span>
+                    <input
+                      id="mobile-checkout-date"
+                      type="date"
+                      min={getOffsetDateString(checkIn, 1)}
+                      value={checkOut}
+                      onChange={handleCheckOutChange}
+                      onClick={(e) => {
+                        try {
+                          e.target.showPicker?.();
+                        } catch {}
+                      }}
+                      className="mobile-native-date-input"
+                      aria-label="Select Check-out Date"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div className="mobile-meta-row">
+                <span className="mobile-rating-pill">10/10</span>
+                <span className="mobile-nights-text">{nights} {nights > 1 ? "Nights" : "Night"}</span>
+              </div>
             </div>
 
-            <div className="booking-field">
-              <label
-                htmlFor={checkOutId}
-                className="booking-label"
-                onClick={() => {
-                  try {
-                    document.getElementById(checkOutId)?.showPicker?.();
-                  } catch {}
-                }}
-              >
-                CHECK-OUT
-              </label>
-              <input
-                id={checkOutId}
-                type="date"
-                min={getOffsetDateString(checkIn, 1)}
-                value={checkOut}
-                onChange={handleCheckOutChange}
-                onClick={(e) => {
-                  try {
-                    e.target.showPicker?.();
-                  } catch {}
-                }}
-                className="booking-input"
-              />
-            </div>
-
-            <div className="booking-field">
-              <label htmlFor={guestsId} className="booking-label">
-                GUESTS
-              </label>
-              <select
-                id={guestsId}
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
-                className="booking-input booking-select"
-              >
-                <option value="1 Adult">1 Adult</option>
-                <option value="2 Adults">2 Adults</option>
-                <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
-                <option value="3 Adults">3 Adults</option>
-                <option value="4+ Family">4+ Family</option>
-              </select>
-            </div>
-
-            <div className="booking-field booking-room-field">
-              <label htmlFor={roomId} className="booking-label">
-                ROOM TYPE
-              </label>
-              <select
-                id={roomId}
-                value={selectedRoom}
-                onChange={(e) => setSelectedRoom(e.target.value)}
-                className="booking-input booking-select"
-              >
-                {ROOM_OPTIONS.map((opt) => (
-                  <option key={opt.id} value={opt.id}>
-                    {opt.name} {opt.id !== "all" ? `(from ₹${opt.price.toLocaleString("en-IN")})` : ""}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          {/* Action CTA */}
-          <div className="booking-action">
             <button
               type="button"
-              className="button-primary booking-submit-btn"
+              className="button-primary mobile-check-dates-btn"
               onClick={() => setIsModalOpen(true)}
-              aria-label="Check Room Availability and Rates"
+              aria-label="Check Room Availability for Selected Dates"
             >
-              <span>CHECK AVAILABILITY</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
+              CHECK DATES
             </button>
           </div>
         </div>
       </aside>
-
-      {/* Mobile Fixed Bottom Booking Bar */}
-      {!isHomeSection && (
-        <aside className="mobile-bottom-booking-bar" aria-label="Mobile Availability Bar">
-          <div className="mobile-booking-summary" onClick={() => setIsModalOpen(true)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}>
-            <div className="mobile-summary-dates">
-              <span className="summary-tag">DATES</span>
-              <span className="summary-val">
-                {formatDisplayDate(checkIn)} – {formatDisplayDate(checkOut)}
-              </span>
-            </div>
-            <div className="mobile-summary-rating">
-              <span className="mobile-rating-pill">10/10</span>
-              <span className="mobile-nights-text">{nights} {nights > 1 ? "Nights" : "Night"}</span>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="button-primary mobile-booking-btn"
-            onClick={() => setIsModalOpen(true)}
-            aria-label="Check Availability and Book Direct"
-          >
-            CHECK DATES
-          </button>
-        </aside>
-      )}
 
       {/* Interactive Availability & Direct Booking Modal */}
       {isModalOpen && (

@@ -23,15 +23,13 @@ export default function ContactPage() {
         <div className="section-container">
           <div className="editorial-tag">
             <span className="accent-pip" />
-            <span>24/7 FRONT DESK &bull; RESERVATIONS</span>
+            <span>CONTACT &bull; HONNĀVAR</span>
           </div>
           <h1 className="page-main-heading">
-            Contact Hotel Pumerai <br />
-            <span className="title-italic">Honnavar, Karnataka</span>
+            Contact Hotel Pumerai
           </h1>
           <p className="page-main-desc">
-            Conveniently located on National Highway 66 near Ramateertha Cross.
-            Reach our front desk directly for real-time room availability, corporate bookings, or local travel guidance.
+            Reach Hotel Pumerai for reservations, enquiries and local travel assistance.
           </p>
         </div>
       </div>

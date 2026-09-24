@@ -45,23 +45,25 @@ export default function GallerySection({ isStandalonePage = false }) {
   return (
     <section className={`section gallery-section ${isStandalonePage ? "gallery-page-view" : ""}`} id="gallery" aria-labelledby="gallery-heading">
       <div className="section-container">
-        {/* Section Header */}
-        <header className="section-header-split" data-reveal>
-          <div className="header-meta">
-            <div className="editorial-tag">
-              <span className="accent-pip" />
-              <span>VISUAL ARCHIVE &bull; HOTEL PUMERAI</span>
+        {/* Section Header (homepage only; standalone gallery page uses its own single hero intro) */}
+        {!isStandalonePage && (
+          <header className="section-header-split" data-reveal>
+            <div className="header-meta">
+              <div className="editorial-tag">
+                <span className="accent-pip" />
+                <span>VISUAL ARCHIVE &bull; HOTEL PUMERAI</span>
+              </div>
+              <h2 id="gallery-heading" className="section-title">
+                Moments of calm <br />
+                <span className="title-italic">&amp; coastal warmth.</span>
+              </h2>
             </div>
-            <h2 id="gallery-heading" className="section-title">
-              Moments of calm <br />
-              <span className="title-italic">&amp; coastal warmth.</span>
-            </h2>
-          </div>
-          <p className="header-summary">
-            Explore authentic photographs of Hotel Pumerai. From our garden view rooms and glass-edge swimming pool
-            to our coastal restaurants and the lush landscapes of Honnavar.
-          </p>
-        </header>
+            <p className="header-summary">
+              Explore authentic photographs of Hotel Pumerai. From our garden view rooms and glass-edge swimming pool
+              to our coastal restaurants and the lush landscapes of Honnavar.
+            </p>
+          </header>
+        )}
 
         {/* Category Tabs: Pool / Exterior / Dining / Lobby / Rooms */}
         <div className="gallery-tabs-row" data-reveal role="tablist" aria-label="Gallery category filters">

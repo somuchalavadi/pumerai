@@ -57,7 +57,7 @@ function pumeraiFramesPlugin() {
 
 export default defineConfig({
   plugins: [react(), pumeraiFramesPlugin()],
-  publicDir: false,
+  publicDir: "public",
   build: {
     sourcemap: false,
   },
