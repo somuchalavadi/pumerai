@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import BookingBar from "./components/BookingBar.jsx";
+import MobileQuickActions from "./components/MobileQuickActions.jsx";
+import RoomsPage from "./components/RoomsPage.jsx";
 import GalleryPage from "./components/GalleryPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
 import HeroSequence from "./sections/HeroSequence.jsx";
 import About from "./sections/About.jsx";
-import Rooms from "./sections/Rooms.jsx";
-import Experience from "./sections/Experience.jsx";
+import RoomsPreview from "./sections/RoomsPreview.jsx";
+import OffersBanner from "./sections/OffersBanner.jsx";
+import AmenitiesGrid from "./sections/AmenitiesGrid.jsx";
 import Dining from "./sections/Dining.jsx";
+import TrustReviews from "./sections/TrustReviews.jsx";
+import GallerySection from "./sections/GallerySection.jsx";
 import Location from "./sections/Location.jsx";
+import FAQ from "./sections/FAQ.jsx";
 import { useSectionReveals } from "./hooks/useSectionReveals.js";
 
-const routes = new Set(["/", "/gallery", "/contact"]);
+const routes = new Set(["/", "/rooms", "/gallery", "/contact"]);
 
 function normalizePath(path) {
   return routes.has(path) ? path : "/";
@@ -19,13 +26,17 @@ function normalizePath(path) {
 
 function HomePage({ onNavigate }) {
   return (
-    <main>
+    <main id="main-content">
       <HeroSequence onNavigate={onNavigate} />
       <About />
-      <Rooms onNavigate={onNavigate} />
-      <Experience />
+      <RoomsPreview onNavigate={onNavigate} />
+      <OffersBanner />
+      <AmenitiesGrid />
       <Dining />
-      <Location onNavigate={onNavigate} />
+      <TrustReviews />
+      <GallerySection />
+      <Location />
+      <FAQ />
     </main>
   );
 }
@@ -46,21 +57,34 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (path !== "/") {
-      window.scrollTo({ top: 0, behavior: "auto" });
+    if (path === "/") {
+      const sectionId = pendingSection || "home";
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: pendingSection ? "smooth" : "auto",
+            block: "start",
+          });
+        }
+      });
       return;
     }
 
-    const sectionId = pendingSection || "home";
-    window.requestAnimationFrame(() => {
-      const target = document.getElementById(sectionId);
-      if (target) {
-        target.scrollIntoView({
-          behavior: pendingSection ? "smooth" : "auto",
-          block: "start",
-        });
-      }
-    });
+    // For subpages (/rooms, /gallery, /contact)
+    if (path === "/rooms" && pendingSection) {
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(pendingSection);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }
+      });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [path, pendingSection]);
 
   const navigate = ({ route, section }) => {
@@ -74,7 +98,9 @@ function App() {
   };
 
   const page =
-    path === "/gallery" ? (
+    path === "/rooms" ? (
+      <RoomsPage />
+    ) : path === "/gallery" ? (
       <GalleryPage />
     ) : path === "/contact" ? (
       <ContactPage />
@@ -85,8 +111,10 @@ function App() {
   return (
     <div className="site-wrapper">
       <Header currentPath={path} onNavigate={navigate} />
+      <BookingBar />
       {page}
       <Footer onNavigate={navigate} />
+      <MobileQuickActions />
     </div>
   );
 }

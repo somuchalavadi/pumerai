@@ -1,29 +1,25 @@
-function GalleryPage() {
+import GallerySection from "../sections/GallerySection.jsx";
+
+export default function GalleryPage() {
   return (
-    <main className="page-shell">
-      <section className="gallery-coming-page" aria-labelledby="gallery-title">
-        <div className="section-container text-center">
-          <div className="editorial-tag justify-center">
+    <main className="page-shell gallery-page-shell">
+      <div className="page-hero-banner">
+        <div className="section-container">
+          <div className="editorial-tag">
             <span className="accent-pip" />
-            <span>VISUAL ARCHIVE</span>
+            <span>PHOTOGRAPHY &bull; HOTEL PUMERAI HONNAVAR</span>
           </div>
-          <h1 id="gallery-title" className="gallery-page-title">
-            The gallery is <br />
-            <span className="title-italic">coming together.</span>
+          <h1 className="page-main-heading">
+            Visual Archive &amp; <br />
+            <span className="title-italic">Property Gallery</span>
           </h1>
-          <div className="brass-rule-small mx-auto" />
-          <p className="gallery-page-copy">
-            A visual story of Pumerai, Honnavar and the coast is being prepared.
+          <p className="page-main-desc">
+            Explore authentic photography of our 40 contemporary guestrooms, glass-edge swimming pool,
+            on-site coastal dining, and our serene location along NH-66 near Ramateertha Cross.
           </p>
-          <div className="gallery-back-home">
-            <a href="/" className="button-secondary">
-              &larr; BACK TO HOME
-            </a>
-          </div>
         </div>
-      </section>
+      </div>
+      <GallerySection isStandalonePage={true} />
     </main>
   );
 }
-
-export default GalleryPage;

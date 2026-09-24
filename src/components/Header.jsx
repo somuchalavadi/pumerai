@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
-import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion.js";
 import LogoMark from "./LogoMark.jsx";
 
-const navigation = [
-  { label: "HOME", route: "/", section: "home" },
-  { label: "ABOUT", route: "/", section: "about" },
-  { label: "ROOMS", route: "/", section: "rooms" },
-  { label: "EXPERIENCE", route: "/", section: "experience" },
-  { label: "DINING", route: "/", section: "dining" },
-  { label: "GALLERY", route: "/gallery" },
-  { label: "CONTACT", route: "/contact" },
+const navItems = [
+  { label: "Home", route: "/", section: "home" },
+  { label: "Rooms", route: "/rooms" },
+  { label: "Dining", route: "/", section: "dining" },
+  { label: "Gallery", route: "/gallery" },
+  { label: "Location", route: "/", section: "location" },
+  { label: "Contact", route: "/contact" },
 ];
 
-function Header({ currentPath, onNavigate }) {
+export default function Header({ currentPath, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    const onScroll = () => setIsScrolled(window.scrollY > 25);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Handle Escape key to close mobile menu
   useEffect(() => {
-    document.body.classList.toggle("menu-open", isOpen);
-    return () => document.body.classList.remove("menu-open");
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
   const handleNavigate = (event, item) => {
@@ -37,7 +40,7 @@ function Header({ currentPath, onNavigate }) {
       const target = document.getElementById(item.section || "home");
       if (target) {
         target.scrollIntoView({
-          behavior: prefersReducedMotion ? "auto" : "smooth",
+          behavior: "smooth",
           block: "start",
         });
       }
@@ -47,22 +50,31 @@ function Header({ currentPath, onNavigate }) {
     onNavigate(item);
   };
 
+  const handleOpenBooking = () => {
+    setIsOpen(false);
+    window.dispatchEvent(new CustomEvent("pumerai:open-booking"));
+  };
+
   return (
     <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
       <div className="header-inner">
+        {/* Brand Logo & Name */}
         <a
           className="brand"
           href="/"
-          onClick={(event) => handleNavigate(event, navigation[0])}
+          onClick={(event) => handleNavigate(event, { route: "/", section: "home" })}
           aria-label="Hotel Pumerai Home"
         >
           <LogoMark />
-          <span className="brand-text">HOTEL PUMERAI</span>
+          <div className="brand-text-wrap">
+            <span className="brand-text">HOTEL PUMERAI</span>
+            <span className="brand-sub">HONNAVAR &bull; NH-66</span>
+          </div>
         </a>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation: Home | Rooms | Dining | Gallery | Location | Contact */}
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navigation.map((item) => {
+          {navItems.map((item) => {
             const isActive =
               (item.route === currentPath && !item.section) ||
               (currentPath === "/" && item.route === "/" && item.section === "home");
@@ -79,53 +91,92 @@ function Header({ currentPath, onNavigate }) {
           })}
         </nav>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          className={`menu-toggle ${isOpen ? "is-active" : ""}`}
-          type="button"
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          <span className="bar-top" />
-          <span className="bar-mid" />
-          <span className="bar-bot" />
-        </button>
+        {/* Header Right Group: Book Now CTA & Mobile Hamburger */}
+        <div className="header-right-group">
+          <button
+            type="button"
+            className="button-primary header-book-btn"
+            onClick={handleOpenBooking}
+            aria-label="Book Now at Hotel Pumerai"
+          >
+            BOOK NOW
+          </button>
+
+          {/* Minimal Mobile Hamburger Button (44x44px tap target) */}
+          <button
+            className={`menu-toggle ${isOpen ? "is-active" : ""}`}
+            type="button"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <span className="bar-top" />
+            <span className="bar-mid" />
+            <span className="bar-bot" />
+          </button>
+        </div>
       </div>
 
-      {/* Full-Screen Mobile Drawer */}
+      {/* Lightweight Mobile Drawer (Minimal, no mega-menus) */}
       <div
-        className={`mobile-nav-overlay ${isOpen ? "is-open" : ""}`}
+        className={`mobile-nav-drawer ${isOpen ? "is-open" : ""}`}
         aria-hidden={!isOpen}
       >
-        <div className="mobile-nav-backdrop" onClick={() => setIsOpen(false)} />
-        <div className="mobile-nav-content">
-          <div className="mobile-nav-header">
-            <span className="mobile-brand-tag">HOTEL PUMERAI &bull; HONNAVAR</span>
+        <div className="mobile-drawer-backdrop" onClick={() => setIsOpen(false)} />
+        <div className="mobile-drawer-body">
+          <div className="mobile-drawer-header">
+            <span className="drawer-title">HOTEL PUMERAI &bull; MENU</span>
+            <button
+              type="button"
+              className="drawer-close-btn"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close navigation menu"
+            >
+              &times;
+            </button>
           </div>
 
-          <nav className="mobile-nav-links" aria-label="Mobile navigation">
-            {navigation.map((item, idx) => (
-              <a
-                key={`${item.route}-${item.section || item.label}`}
-                href={item.section ? `/#${item.section}` : item.route}
-                className="mobile-nav-item"
-                style={{ animationDelay: `${idx * 45}ms` }}
-                onClick={(event) => handleNavigate(event, item)}
-              >
-                <span className="mobile-nav-index">0{idx + 1}</span>
-                <span className="mobile-nav-label">{item.label}</span>
-              </a>
-            ))}
+          <nav className="mobile-drawer-nav" aria-label="Mobile navigation">
+            {navItems.map((item) => {
+              const isActive =
+                (item.route === currentPath && !item.section) ||
+                (currentPath === "/" && item.route === "/" && item.section === "home");
+              return (
+                <a
+                  key={`${item.route}-${item.section || item.label}`}
+                  href={item.section ? `/#${item.section}` : item.route}
+                  className={`mobile-nav-link ${isActive ? "is-active" : ""}`}
+                  onClick={(e) => handleNavigate(e, item)}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
-          <div className="mobile-nav-footer">
-            <div className="mobile-contact-line">
-              <span className="label">RESERVATIONS:</span>
-              <a href="tel:+919845423223">+91 98454 23223</a>
-            </div>
-            <div className="mobile-location-line">
-              <span>NH-66, near Ramateertha Cross, Honnavar</span>
+          <div className="mobile-drawer-actions">
+            <button
+              type="button"
+              className="button-primary mobile-drawer-book-btn"
+              onClick={handleOpenBooking}
+            >
+              BOOK NOW &bull; SAVE 10%
+            </button>
+
+            <div className="mobile-drawer-contact">
+              <a href="tel:+919845423223" className="drawer-contact-item">
+                <span className="label">Reservations:</span>
+                <span className="val">+91 98454 23223</span>
+              </a>
+              <a
+                href="https://wa.me/919845423223?text=Hi%20Hotel%20Pumerai%2C%20I%20would%20like%20to%20inquire%20about%20room%20availability"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="drawer-contact-item"
+              >
+                <span className="label">WhatsApp:</span>
+                <span className="val">Instant Chat</span>
+              </a>
             </div>
           </div>
         </div>
@@ -133,5 +184,3 @@ function Header({ currentPath, onNavigate }) {
     </header>
   );
 }
-
-export default Header;

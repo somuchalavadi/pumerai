@@ -8,24 +8,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const storyMoments = [
   {
-    eyebrow: "PUMERAI",
-    title: "A quiet place to stay",
-    copy: "Contemporary hospitality on the coastal road of Honnavar.",
+    eyebrow: "HOTEL PUMERAI · NH-66 HONNAVAR",
+    title: "A quiet boutique stay on the coast",
+    copy: "Hotel Pumerai is a 3-star boutique hotel on NH-66 in Honnavar, Karnataka, ~5 km from Kasarkod Beach and ~2.8 km from the Sharavati River, with 40 rooms, an indoor pool, and two on-site restaurants.",
   },
   {
-    eyebrow: "ARRIVE · NH-66",
-    title: "A coastal stopover",
-    copy: "The highway softens into sun-washed courtyard spaces, open air, and calm.",
+    eyebrow: "ARRIVE · COASTAL HIGHWAY",
+    title: "Effortless highway access & calm",
+    copy: "Conveniently situated near Ramateertha Cross on NH-66 with wide access, free secured parking, EV charging, and 24-hour reception.",
   },
   {
-    eyebrow: "LEISURE & POOL",
-    title: "Resort-style comfort",
-    copy: "An outdoor glass-edge swimming pool framed by western coastal breezes.",
+    eyebrow: "SWIMMING POOL & LEISURE",
+    title: "Indoor glass-edge pool & retreat",
+    copy: "Featuring an indoor temperature-balanced swimming pool and children's splash area open daily from 6:30 AM to 7:00 PM.",
   },
   {
-    eyebrow: "HONNAVAR",
-    title: "A base for exploring",
-    copy: "Thoughtful spaces designed for travellers discovering Karnataka's coast.",
+    eyebrow: "KARAVALI & HONNAVAR",
+    title: "Your gateway to beaches & backwaters",
+    copy: "Explore Kasarkod Eco Beach, Sharavati River boat cruises, Mirjan Fort, and Murudeshwar from a serene, central base.",
   },
 ];
 
@@ -45,7 +45,7 @@ function drawContainedImage(ctx, image, canvas, fit = "cover") {
   ctx.drawImage(image, x, y, width, height);
 }
 
-function HeroSequence({ onNavigate }) {
+export default function HeroSequence({ onNavigate }) {
   const canvasRef = useRef(null);
   const heroRef = useRef(null);
   const pinRef = useRef(null);
@@ -175,7 +175,7 @@ function HeroSequence({ onNavigate }) {
     }
 
     const isMobile = window.innerWidth <= 768;
-    const scrollDistance = isMobile ? "+=230%" : "+=380%";
+    const scrollDistance = isMobile ? "+=220%" : "+=340%";
 
     const context = gsap.context(() => {
       ScrollTrigger.create({
@@ -212,6 +212,11 @@ function HeroSequence({ onNavigate }) {
 
   const activeStory = storyMoments[storyIndex];
 
+  const handleOpenBookingModal = (e) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("pumerai:open-booking"));
+  };
+
   const handleScrollTo = (event, targetId) => {
     event.preventDefault();
     const target = document.getElementById(targetId);
@@ -222,32 +227,38 @@ function HeroSequence({ onNavigate }) {
 
   if (prefersReducedMotion) {
     return (
-      <section className="hero hero-static" id="home" aria-label="Hotel Pumerai">
+      <section className="hero hero-static" id="home" aria-label="Hotel Pumerai Honnavar">
         <img
           src={framePath(1)}
-          alt="Hotel Pumerai exterior on NH-66 Honnavar"
+          alt="Hotel Pumerai boutique 3-star property on NH-66 Honnavar Karnataka"
           className="hero-static-img"
         />
         <div className="hero-copy">
-          <p className="hero-eyebrow">PUMERAI</p>
-          <h1 className="hero-heading">A quiet place to stay</h1>
-          <span className="hero-subtitle">
-            Contemporary hospitality on the coastal road of Honnavar.
-          </span>
+          <div className="hero-trust-badge">
+            <span className="trust-star">&#9733; 10/10 Exceptional</span>
+            <span className="trust-sep">&bull;</span>
+            <span>Google Stays &bull; 40 Rooms</span>
+          </div>
+          <p className="hero-eyebrow">HOTEL PUMERAI &bull; NH-66 HONNAVAR</p>
+          <h1 className="hero-heading">A quiet boutique hotel on Karnataka&apos;s coast</h1>
+          <p className="hero-subtitle">
+            Hotel Pumerai is a 3-star hotel on NH-66 near Ramateertha Cross in Honnavar, Karnataka,
+            5 km from Kasarkod Beach and 2.8 km from Sharavati River, with 40 rooms, an indoor pool, and two on-site restaurants.
+          </p>
           <div className="hero-actions">
-            <a
-              href="#about"
-              className="hero-btn-primary"
-              onClick={(e) => handleScrollTo(e, "about")}
+            <button
+              type="button"
+              className="button-primary hero-btn-primary"
+              onClick={handleOpenBookingModal}
             >
-              EXPLORE PUMERAI
-            </a>
+              CHECK AVAILABILITY
+            </button>
             <a
               href="#rooms"
-              className="hero-btn-secondary"
+              className="button-secondary hero-btn-secondary"
               onClick={(e) => handleScrollTo(e, "rooms")}
             >
-              VIEW ROOMS
+              VIEW ROOMS &amp; RATES
             </a>
           </div>
         </div>
@@ -256,15 +267,15 @@ function HeroSequence({ onNavigate }) {
   }
 
   return (
-    <section className="hero" id="home" ref={heroRef} aria-label="Hotel Pumerai">
+    <section className="hero" id="home" ref={heroRef} aria-label="Hotel Pumerai Honnavar">
       <div className="hero-pin" ref={pinRef}>
-        <canvas ref={canvasRef} aria-label="Cinematic 240-frame sequence through Hotel Pumerai" />
+        <canvas ref={canvasRef} aria-label="Interactive 240-frame sequence through Hotel Pumerai on NH-66" />
 
         {!isReady && (
           <div className="loading-screen" aria-live="polite">
-            <p className="loading-logo">PUMERAI</p>
+            <p className="loading-logo">HOTEL PUMERAI</p>
             <span className="loading-caption">
-              Contemporary hospitality on the coastal road of Honnavar
+              Honnavar, Karnataka &bull; NH-66 Near Ramateertha Cross
             </span>
             <div className="loading-track">
               <i style={{ width: `${progress}%` }} />
@@ -275,29 +286,38 @@ function HeroSequence({ onNavigate }) {
 
         {isReady && loadedCount === 0 && (
           <div className="fallback-message">
-            <p className="loading-logo">PUMERAI</p>
-            <span>The hotel story is available below while the visual sequence connects.</span>
+            <p className="loading-logo">HOTEL PUMERAI</p>
+            <span>Welcome to Hotel Pumerai, Honnavar. Explore rooms and dining below.</span>
           </div>
         )}
 
         <div className={`hero-copy ${isReady ? "is-visible" : ""}`} key={storyIndex}>
+          {/* Trust Signal Badge directly in hero */}
+          <div className="hero-trust-badge">
+            <span className="trust-star">&#9733; 10/10 Exceptional</span>
+            <span className="trust-sep">&bull;</span>
+            <span>Google Stays &bull; 40 Rooms &bull; 3-Star Property</span>
+          </div>
+
           <p className="hero-eyebrow">{activeStory.eyebrow}</p>
           <h1 className="hero-heading">{activeStory.title}</h1>
-          <span className="hero-subtitle">{activeStory.copy}</span>
+          <p className="hero-subtitle">{activeStory.copy}</p>
+
           <div className="hero-actions">
-            <a
-              href="#about"
-              className="hero-btn-primary"
-              onClick={(e) => handleScrollTo(e, "about")}
+            <button
+              type="button"
+              className="button-primary hero-btn-primary"
+              onClick={handleOpenBookingModal}
+              aria-label="Check Room Availability and Book Direct"
             >
-              EXPLORE PUMERAI
-            </a>
+              CHECK AVAILABILITY
+            </button>
             <a
               href="#rooms"
-              className="hero-btn-secondary"
+              className="button-secondary hero-btn-secondary"
               onClick={(e) => handleScrollTo(e, "rooms")}
             >
-              VIEW ROOMS
+              VIEW ROOMS &amp; RATES
             </a>
           </div>
         </div>
@@ -309,5 +329,3 @@ function HeroSequence({ onNavigate }) {
     </section>
   );
 }
-
-export default HeroSequence;
