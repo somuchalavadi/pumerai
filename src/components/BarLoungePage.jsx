@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { venuesData } from "../data/dining.js";
+import PageHeader from "./PageHeader.jsx";
 
 export default function BarLoungePage({ onNavigate }) {
   const [activeMenuVenue, setActiveMenuVenue] = useState(null);
@@ -19,21 +20,12 @@ export default function BarLoungePage({ onNavigate }) {
 
   return (
     <main className="page-shell bar-lounge-page-shell">
-      {/* Page Hero Banner: Minimal 1-line intro */}
-      <div className="page-hero-banner">
-        <div className="section-container">
-          <div className="editorial-tag">
-            <span className="accent-pip" />
-            <span>BAR &amp; LOUNGE &bull; HONNĀVAR</span>
-          </div>
-          <h1 className="page-main-heading">
-            Madira Bar &amp; Lounge
-          </h1>
-          <p className="page-main-desc">
-            Fine spirits, coastal mocktails, finger bites and coffee at Hotel Pumerai, Honnāvar.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="BAR & LOUNGE • HONNĀVAR"
+        title="Madira Bar & Lounge"
+        description="Fine spirits, coastal mocktails, finger bites and coffee at Hotel Pumerai, Honnāvar."
+        id="madira-page-heading"
+      />
 
       {/* Actual Bar & Lounge Content */}
       <section className="section bar-lounge-detail-section" id="madira-details" aria-label="Madira Bar & Lounge Details">

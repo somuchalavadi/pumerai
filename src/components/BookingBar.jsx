@@ -60,6 +60,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
   const [guests, setGuests] = useState("2 Adults");
   const [selectedRoom, setSelectedRoom] = useState(initialRoom || "all");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalStep, setModalStep] = useState("select");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [guestName, setGuestName] = useState("");
   const [guestPhone, setGuestPhone] = useState("");
@@ -71,8 +72,10 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
     const handleOpenBooking = (event) => {
       if (event.detail?.room) {
         setSelectedRoom(event.detail.room);
+        setModalStep("request");
       } else {
         setSelectedRoom("all");
+        setModalStep("select");
       }
       setIsModalOpen(true);
     };
@@ -143,6 +146,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
   const handleResetModal = () => {
     setIsSubmitted(false);
     setIsModalOpen(false);
+    setModalStep("select");
   };
 
   return (
@@ -260,7 +264,10 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
               <button
                 type="button"
                 className="button-primary booking-submit-btn"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => {
+                  setModalStep("request");
+                  setIsModalOpen(true);
+                }}
                 aria-label="Check Room Availability and Rates"
               >
                 <span>CHECK AVAILABILITY</span>
@@ -334,7 +341,10 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
             <button
               type="button"
               className="button-primary mobile-check-dates-btn"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setModalStep("select");
+                setIsModalOpen(true);
+              }}
               aria-label="Check Room Availability for Selected Dates"
             >
               CHECK DATES
@@ -358,40 +368,147 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
             </button>
 
             {!isSubmitted ? (
-              <div className="modal-body-grid">
-                {/* Left Col: Stay Calculation & Direct Perks */}
-                <div className="modal-summary-col">
+              modalStep === "select" ? (
+                /* Step 1: Select Stay Details */
+                <div className="modal-select-step">
                   <div className="editorial-tag">
                     <span className="accent-pip" />
-                    <span>HOTEL PUMERAI &bull; DIRECT BENEFIT</span>
+                    <span>HOTEL PUMERAI &bull; RESERVATION DETAILS</span>
                   </div>
                   <h3 id="modal-title" className="modal-title">
-                    Check Availability &amp; Reserve Direct
+                    Select Your Stay Details
                   </h3>
                   <p className="modal-subtitle">
-                    NH-66, near Ramateertha Cross, Honnavar, Karnataka 581334
+                    Choose your check-in, check-out, number of guests, and room type to check availability.
                   </p>
 
-                  <div className="modal-calc-card">
-                    <div className="calc-row">
-                      <span className="calc-label">Selected Room</span>
-                      <span className="calc-val">{matchedRoom.name}</span>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setModalStep("request");
+                    }}
+                    className="modal-select-form"
+                  >
+                    <div className="modal-form-grid-2">
+                      <div className="form-group">
+                        <label htmlFor="modal-checkin">Check-In Date *</label>
+                        <input
+                          id="modal-checkin"
+                          type="date"
+                          min={todayStr}
+                          value={checkIn}
+                          onChange={handleCheckInChange}
+                          required
+                          className="modal-form-input"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="modal-checkout">Check-Out Date *</label>
+                        <input
+                          id="modal-checkout"
+                          type="date"
+                          min={getOffsetDateString(checkIn, 1)}
+                          value={checkOut}
+                          onChange={handleCheckOutChange}
+                          required
+                          className="modal-form-input"
+                        />
+                      </div>
                     </div>
-                    <div className="calc-row">
-                      <span className="calc-label">Stay Dates</span>
-                      <span className="calc-val">
-                        {checkIn} to {checkOut} ({nights} night{nights > 1 ? "s" : ""})
-                      </span>
+
+                    <div className="modal-form-grid-2">
+                      <div className="form-group">
+                        <label htmlFor="modal-guests">Number of Guests *</label>
+                        <select
+                          id="modal-guests"
+                          value={guests}
+                          onChange={(e) => setGuests(e.target.value)}
+                          className="modal-form-input modal-form-select"
+                        >
+                          <option value="1 Adult">1 Adult</option>
+                          <option value="2 Adults">2 Adults</option>
+                          <option value="2 Adults, 1 Child">2 Adults, 1 Child</option>
+                          <option value="3 Adults">3 Adults</option>
+                          <option value="4+ Family">4+ Family</option>
+                        </select>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="modal-room">Room Type *</label>
+                        <select
+                          id="modal-room"
+                          value={selectedRoom}
+                          onChange={(e) => setSelectedRoom(e.target.value)}
+                          className="modal-form-input modal-form-select"
+                        >
+                          {ROOM_OPTIONS.map((opt) => (
+                            <option key={opt.id} value={opt.id}>
+                              {opt.name}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
-                    <div className="calc-row">
-                      <span className="calc-label">Occupancy</span>
-                      <span className="calc-val">{guests}</span>
+
+                    <div className="modal-select-actions">
+                      <button type="submit" className="button-primary modal-check-btn">
+                        <span>CHECK AVAILABILITY</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </button>
                     </div>
-                    <div className="calc-divider" />
-                    <div className="reservation-badge-note">
-                      <span>✓ Direct Front Desk Reservation Request</span>
+                  </form>
+                </div>
+              ) : (
+                /* Step 2: Exact Reservation Request Details & Inquiry */
+                <div className="modal-body-grid">
+                  {/* Left Col: Stay Calculation & Direct Perks */}
+                  <div className="modal-summary-col">
+                    <div className="editorial-tag">
+                      <span className="accent-pip" />
+                      <span>HOTEL PUMERAI &bull; DIRECT BENEFIT</span>
                     </div>
-                  </div>
+                    <h3 id="modal-title" className="modal-title">
+                      Check Availability &amp; Reserve Direct
+                    </h3>
+                    <p className="modal-subtitle">
+                      NH-66, near Ramateertha Cross, Honnavar, Karnataka 581334
+                    </p>
+
+                    <div className="modal-calc-card">
+                      <div className="calc-header-row">
+                        <span className="calc-card-title">YOUR RESERVATION DETAILS</span>
+                        <button
+                          type="button"
+                          className="calc-edit-btn"
+                          onClick={() => setModalStep("select")}
+                          title="Edit dates, guests, or room"
+                        >
+                          Edit Details &rarr;
+                        </button>
+                      </div>
+                      <div className="calc-row">
+                        <span className="calc-label">Selected Room</span>
+                        <span className="calc-val">{matchedRoom.name}</span>
+                      </div>
+                      <div className="calc-row">
+                        <span className="calc-label">Stay Dates</span>
+                        <span className="calc-val">
+                          {checkIn} to {checkOut} ({nights} night{nights > 1 ? "s" : ""})
+                        </span>
+                      </div>
+                      <div className="calc-row">
+                        <span className="calc-label">Occupancy</span>
+                        <span className="calc-val">{guests}</span>
+                      </div>
+                      <div className="calc-divider" />
+                      <div className="reservation-badge-note">
+                        <span>✓ Direct Front Desk Reservation Request</span>
+                      </div>
+                    </div>
 
                   <div className="modal-inclusions-list">
                     <span className="inclusions-heading">ALL DIRECT BOOKINGS INCLUDE:</span>
@@ -523,7 +640,8 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
                   </form>
                 </div>
               </div>
-            ) : (
+            )
+          ) : (
               /* Success / Submission Confirmation State */
               <div className="modal-success-screen">
                 <div className="success-icon">&#x2713;</div>

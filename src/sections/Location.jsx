@@ -132,7 +132,7 @@ export default function Location({ isStandalonePage = false }) {
           <div className="map-embed-container">
             <iframe
               title="Hotel Pumerai Honnavar Official Location on Google Maps"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800!2d74.446001!3d14.2904652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbc3b0078713aef:0xc5291d53eacaf9a1!5e0!3m2!1sen!2sin!4v0"
+              src="https://maps.google.com/maps?q=Hotel+Pumerai,+NH-66,+Ramateertha+Cross,+Honnavar,+Karnataka+581334&amp;hl=en&amp;z=15&amp;output=embed"
               width="100%"
               height="450"
               style={{ border: 0 }}

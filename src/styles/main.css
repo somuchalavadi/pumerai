@@ -2709,6 +2709,71 @@ a:focus-visible {
   margin-top: 4px;
 }
 
+.modal-select-step {
+  padding: clamp(8px, 1.5vw, 16px);
+}
+
+.modal-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 600px) {
+  .modal-form-grid-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.modal-select-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.modal-check-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.calc-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calc-card-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-umber);
+  text-transform: uppercase;
+}
+
+.calc-edit-btn {
+  background: none;
+  border: none;
+  color: var(--accent-gold);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: opacity 200ms ease;
+}
+
+.calc-edit-btn:hover {
+  opacity: 0.8;
+}
+
 .modal-success-screen {
   text-align: center;
   padding: clamp(20px, 4vw, 40px) 10px;
@@ -3960,15 +4025,30 @@ a:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .gallery-section:not(.gallery-page-view) {
+    padding-block: clamp(32px, 6vw, 44px);
+  }
+  .gallery-section:not(.gallery-page-view) .section-container {
+    padding-inline: 12px;
+  }
+  .gallery-section:not(.gallery-page-view) .section-header-split {
+    margin-bottom: 14px;
+  }
+  .gallery-section:not(.gallery-page-view) .homepage-gallery-slider-wrapper {
+    margin-top: 10px;
+  }
   .gallery-slider-viewport {
-    --gallery-gap: 10px;
+    --gallery-gap: 8px;
     --visible-items: 3;
   }
 }
 
 @media (max-width: 360px) {
+  .gallery-section:not(.gallery-page-view) .section-container {
+    padding-inline: 8px;
+  }
   .gallery-slider-viewport {
-    --gallery-gap: 8px;
+    --gallery-gap: 6px;
     --visible-items: 3;
   }
 }
@@ -4290,26 +4370,46 @@ a:focus-visible {
   padding-top: clamp(90px, 12vw, 130px);
 }
 
+.page-header-compact,
 .page-hero-banner {
-  padding-block: clamp(24px, 5vw, 48px);
+  padding-block: clamp(28px, 4vw, 42px);
   border-bottom: 1px solid var(--line-subtle);
   background-color: var(--surface-clay);
 }
 
-.page-main-heading {
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  color: var(--text-teak);
-  line-height: 1.08;
-  margin-top: 8px;
+.page-header-eyebrow {
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
 }
 
+@media (max-width: 767px) {
+  .page-header-compact,
+  .page-hero-banner {
+    padding-block: 22px 26px;
+  }
+  .page-header-eyebrow {
+    font-size: 0.72rem;
+    margin-bottom: 4px;
+  }
+}
+
+.page-header-title,
+.page-main-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  color: var(--text-teak);
+  line-height: 1.12;
+  margin: 0;
+}
+
+.page-header-desc,
 .page-main-desc {
-  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.25vw, 1.18rem);
   color: var(--text-umber);
-  max-width: 740px;
-  margin-top: 14px;
-  line-height: 1.6;
+  max-width: 700px;
+  margin: 8px 0 0 0;
+  line-height: 1.5;
 }
 
 /* ==========================================================================
@@ -5334,6 +5434,13 @@ a:focus-visible {
   margin-top: 16px;
 }
 
+.dining-preview-section {
+  padding-block: clamp(48px, 7vw, 96px);
+  background-color: var(--surface-clay);
+  border-top: 1px solid var(--line-subtle);
+  border-bottom: 1px solid var(--line-subtle);
+}
+
 .rooms-preview-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -5458,15 +5565,175 @@ a:focus-visible {
 }
 
 .rooms-full-listing-section {
-  padding-block: clamp(32px, 6vw, 64px);
+  padding-block: clamp(32px, 5vw, 56px);
 }
 
 .room-card-full {
+  max-width: 1040px;
+  margin-inline: auto;
+  background-color: #FFFDF8;
+  border: 1px solid var(--line-subtle);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(37, 35, 31, 0.04);
+  transition: transform 220ms ease, box-shadow 220ms ease;
   scroll-margin-top: calc(var(--header-height-desktop) + 40px);
 }
 
+.room-card-full:hover {
+  box-shadow: 0 8px 30px rgba(37, 35, 31, 0.08);
+}
+
+@media (min-width: 860px) {
+  .room-card-full {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+.room-card-full .room-media-box {
+  background-color: #26231E;
+}
+
+.room-card-full .room-main-figure {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #26231E;
+  margin: 0;
+}
+
+.room-card-full .room-thumbnails-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 6px;
+  background-color: rgba(37, 35, 31, 0.04);
+  border-top: 1px solid var(--line-subtle);
+}
+
+.room-card-full .room-thumb-btn {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  border-radius: 1px;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 200ms ease, border-color 200ms ease;
+}
+
+.room-card-full .room-thumb-btn:hover,
+.room-card-full .room-thumb-btn.is-active {
+  opacity: 1;
+  border-color: var(--accent-gold);
+}
+
+.room-card-full .room-card-content {
+  padding: clamp(18px, 3vw, 30px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.room-card-full .room-tagline {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+.room-card-full .room-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  color: var(--text-teak);
+  margin-top: 2px;
+  line-height: 1.18;
+}
+
+.room-card-full .room-specs-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 4px 6px;
+  padding-block: 6px;
+  border-block: 1px solid var(--line-subtle);
+  font-size: 0.78rem;
+  color: var(--text-teak);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.room-card-full .spec-divider {
+  color: var(--accent-gold);
+  opacity: 0.6;
+}
+
+.room-card-full .room-description {
+  font-size: 0.86rem;
+  color: var(--text-umber);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.room-card-full .room-features-box {
+  margin-block: 4px;
+}
+
+.room-card-full .features-title {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-umber);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.room-card-full .room-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.room-card-full .feature-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-teak);
+  line-height: 1.4;
+}
+
+.room-card-full .feature-bullet {
+  color: var(--accent-gold);
+}
+
+.room-card-bottom-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.room-whatsapp-btn {
+  width: 100%;
+  justify-content: center;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+}
+
 .room-full-description-panel {
-  margin-block: 10px 14px;
+  margin-block: 8px 12px;
   padding: 12px 14px;
   background-color: rgba(255, 253, 248, 0.6);
   border-left: 2px solid var(--accent-champagne);
@@ -5474,8 +5741,8 @@ a:focus-visible {
 }
 
 .room-detailed-text {
-  font-size: 0.85rem;
-  line-height: 1.65;
+  font-size: 0.84rem;
+  line-height: 1.6;
   color: var(--text-teak);
 }
 
@@ -5483,13 +5750,12 @@ a:focus-visible {
   background: transparent;
   border: none;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--accent-gold);
   cursor: pointer;
-  padding: 6px 0;
-  margin-bottom: 12px;
+  padding: 4px 0;
   text-align: left;
   transition: opacity 200ms ease;
 }

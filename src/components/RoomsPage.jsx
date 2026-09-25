@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { rooms } from "../data/rooms.js";
 import RoomImage from "./RoomImage.jsx";
+import PageHeader from "./PageHeader.jsx";
 
 export default function RoomsPage() {
   const [activePhotoIndex, setActivePhotoIndex] = useState({});
@@ -27,30 +28,16 @@ export default function RoomsPage() {
     setExpandedDetails((prev) => ({ ...prev, [slug]: !prev[slug] }));
   };
 
-  const handleBookRoom = (roomSlug) => {
-    window.dispatchEvent(
-      new CustomEvent("pumerai:open-booking", { detail: { room: roomSlug } })
-    );
-  };
-
   return (
     <main className="page-shell rooms-page-shell">
-      {/* Rooms Page Hero Banner */}
-      <section className="page-hero-banner" aria-labelledby="rooms-page-heading">
-        <div className="section-container">
-          <div className="editorial-tag">
-            <span className="accent-pip" />
-            <span>ACCOMMODATION &bull; HONNĀVAR</span>
-          </div>
-          <h1 id="rooms-page-heading" className="page-main-heading">
-            Rooms &amp; Suites at <br />
-            <span className="title-italic">Hotel Pumerai Honnavar</span>
-          </h1>
-          <p className="page-main-desc">
-            Explore our collection of contemporary rooms and suites in Honnāvar.
-          </p>
-        </div>
-      </section>
+      {/* Standardized Compact Internal Page Header */}
+      <PageHeader
+        eyebrow="ACCOMMODATION • HONNĀVAR"
+        title="Rooms & Suites at"
+        italicTitle="Hotel Pumerai Honnavar"
+        description="Explore our collection of contemporary rooms and suites in Honnāvar."
+        id="rooms-page-heading"
+      />
 
       {/* Complete Rooms Grid: All 7 Categories */}
       <section className="section rooms-full-listing-section">
@@ -79,13 +66,9 @@ export default function RoomsPage() {
                         className="room-main-image"
                         loading="lazy"
                       />
-                      <div className="room-badge-top">
-                        <span className="room-size-badge">{room.size}</span>
-                        <span className="room-sleeps-badge">{room.occupancy}</span>
-                      </div>
                     </figure>
 
-                    {/* Thumbnail Selector Strip (cover.jpg, 1.jpg, 2.jpg, 3.jpg) */}
+                    {/* Thumbnail Selector Strip */}
                     <div
                       className="room-thumbnails-strip"
                       aria-label={`Photo gallery for ${room.name}`}
@@ -112,26 +95,19 @@ export default function RoomsPage() {
                   {/* Room Details & Actions */}
                   <div className="room-card-content">
                     <div className="room-header-meta">
-                      <span className="room-tagline">{room.tagline}</span>
-                      <h2 className="room-name" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}>
+                      <span className="room-tagline">{room.tagline || "ACCOMMODATION • HONNAVAR"}</span>
+                      <h2 className="room-name">
                         {room.name}
                       </h2>
                     </div>
 
-                    {/* Specifications Row */}
+                    {/* Specifications Row: Bed | Size | Occupancy */}
                     <div className="room-specs-row">
-                      <div className="spec-item">
-                        <span className="spec-label">BED TYPE</span>
-                        <span className="spec-value">{room.bedType}</span>
-                      </div>
-                      <div className="spec-item">
-                        <span className="spec-label">ROOM SIZE</span>
-                        <span className="spec-value">{room.size}</span>
-                      </div>
-                      <div className="spec-item">
-                        <span className="spec-label">MAX OCCUPANCY</span>
-                        <span className="spec-value">{room.occupancy}</span>
-                      </div>
+                      <span className="spec-pill">{room.bedType}</span>
+                      <span className="spec-divider" aria-hidden="true">&bull;</span>
+                      <span className="spec-pill">{room.size}</span>
+                      <span className="spec-divider" aria-hidden="true">&bull;</span>
+                      <span className="spec-pill">{room.occupancy}</span>
                     </div>
 
                     {/* Descriptions */}
@@ -145,9 +121,9 @@ export default function RoomsPage() {
 
                     {/* Inclusions Highlights */}
                     <div className="room-features-box">
-                      <span className="features-title">Room Highlights &amp; Inclusions:</span>
+                      <span className="features-title">Highlights &amp; Amenities:</span>
                       <ul className="room-features-list">
-                        {(isExpanded ? room.highlights : room.highlights.slice(0, 4)).map((item) => (
+                        {(isExpanded ? room.highlights : room.highlights.slice(0, 3)).map((item) => (
                           <li key={item} className="feature-item">
                             <span className="feature-bullet">&bull;</span>
                             <span>{item}</span>
@@ -156,28 +132,30 @@ export default function RoomsPage() {
                       </ul>
                     </div>
 
-                    <button
-                      type="button"
-                      className="room-details-toggle-btn"
-                      onClick={() => toggleDetails(room.slug)}
-                      aria-expanded={isExpanded}
-                    >
-                      {isExpanded ? "Show Less Details ↑" : "View Full Details & Amenities ↓"}
-                    </button>
+                    <div className="room-card-bottom-actions">
+                      <button
+                        type="button"
+                        className="room-details-toggle-btn"
+                        onClick={() => toggleDetails(room.slug)}
+                        aria-expanded={isExpanded}
+                      >
+                        {isExpanded ? "Show Less Details ↑" : "View Full Details & Amenities ↓"}
+                      </button>
 
-                    {/* Booking CTA Row */}
-                    <div className="room-pricing-cta-row" style={{ justifyContent: "flex-end" }}>
+                      {/* Booking CTA Button */}
                       <a
                         href={`https://wa.me/919845423223?text=${encodeURIComponent(
                           `Hello Hotel Pumerai, I would like to inquire about booking the ${room.name}.`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="button-whatsapp-instant"
-                        style={{ textDecoration: "none", width: "100%", justifyContent: "center" }}
+                        className="button-whatsapp-instant room-whatsapp-btn"
                         aria-label={`Book ${room.name} on WhatsApp`}
                       >
-                        BOOK ON WHATSAPP
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                        <span>BOOK ON WHATSAPP</span>
                       </a>
                     </div>
                   </div>

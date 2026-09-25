@@ -122,8 +122,8 @@ export default function GallerySection({ isStandalonePage = false, onNavigate })
   const getGap = (width) => {
     if (width >= 1024) return 16;
     if (width >= 768) return 12;
-    if (width <= 360) return 8;
-    return 10;
+    if (width <= 360) return 6;
+    return 8;
   };
 
   let trackStyle = {};

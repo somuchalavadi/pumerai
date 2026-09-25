@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PageHeader from "./PageHeader.jsx";
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -19,20 +20,12 @@ export default function ContactPage() {
 
   return (
     <main className="page-shell contact-page-shell">
-      <div className="page-hero-banner">
-        <div className="section-container">
-          <div className="editorial-tag">
-            <span className="accent-pip" />
-            <span>CONTACT &bull; HONNĀVAR</span>
-          </div>
-          <h1 className="page-main-heading">
-            Contact Hotel Pumerai
-          </h1>
-          <p className="page-main-desc">
-            Reach Hotel Pumerai for reservations, enquiries and local travel assistance.
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        eyebrow="CONTACT • HONNĀVAR"
+        title="Contact Hotel Pumerai"
+        description="Reach Hotel Pumerai for reservations, enquiries and local travel assistance."
+        id="contact-page-heading"
+      />
 
       <section className="section contact-details-section">
         <div className="section-container">

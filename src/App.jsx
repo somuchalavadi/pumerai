@@ -15,7 +15,7 @@ import About from "./sections/About.jsx";
 import RoomsPreview from "./sections/RoomsPreview.jsx";
 import OffersBanner from "./sections/OffersBanner.jsx";
 import AmenitiesGrid from "./sections/AmenitiesGrid.jsx";
-import Dining from "./sections/Dining.jsx";
+import DiningPreview from "./sections/DiningPreview.jsx";
 import TrustReviews from "./sections/TrustReviews.jsx";
 import GallerySection from "./sections/GallerySection.jsx";
 import Location from "./sections/Location.jsx";
@@ -38,7 +38,7 @@ function HomePage({ onNavigate }) {
       <RoomsPreview onNavigate={onNavigate} />
       <OffersBanner />
       <AmenitiesGrid />
-      <Dining />
+      <DiningPreview onNavigate={onNavigate} />
       <TrustReviews />
       <GallerySection onNavigate={onNavigate} />
       <Location />
