@@ -16,7 +16,7 @@ export default function FAQ() {
           <div className="header-meta">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>FREQUENTLY ASKED QUESTIONS &bull; AEO READY</span>
+              <span>Frequently Asked Questions</span>
             </div>
             <h2 id="faq-heading" className="section-title">
               Clear answers for <br />
@@ -35,6 +35,7 @@ export default function FAQ() {
             const isOpen = openIndex === index;
             const headingId = `faq-q-${index}`;
             const panelId = `faq-a-${index}`;
+            const formattedNumber = String(index + 1).padStart(2, "0");
 
             return (
               <div className={`faq-item ${isOpen ? "is-expanded" : ""}`} key={item.q}>
@@ -46,7 +47,8 @@ export default function FAQ() {
                   aria-controls={panelId}
                   onClick={() => toggleItem(index)}
                 >
-                  <span className="faq-q-number">0{index + 1}</span>
+                  <span className="faq-q-number">{formattedNumber}</span>
+                  <span className="faq-q-divider" aria-hidden="true">|</span>
                   <span className="faq-q-text">{item.q}</span>
                   <span className="faq-icon-indicator" aria-hidden="true">
                     {isOpen ? "−" : "+"}

@@ -155,7 +155,7 @@ export default function AmenitiesGrid() {
           <div className="header-meta">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>FACILITIES &amp; SERVICES</span>
+              <span>Facilities &amp; Services</span>
             </div>
             <h2 id="amenities-heading" className="section-title">
               Crafted for ease, <br />

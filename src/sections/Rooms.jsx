@@ -31,7 +31,7 @@ export default function Rooms() {
           <div className="header-meta">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>ACCOMMODATION &bull; HONNAVAR</span>
+              <span>Accommodation &bull; Honnavar</span>
             </div>
             <h2 id="rooms-heading" className="section-title">
               Thoughtful spaces for <br />
@@ -158,8 +158,8 @@ export default function Rooms() {
         {/* Property Room Standard Guarantee */}
         <div className="room-standards-banner" data-reveal>
           <div className="standards-header">
-            <span className="standards-tag">PROPERTY STANDARD &bull; HOTEL PUMERAI</span>
-            <h4 className="standards-title">Every room booking always includes:</h4>
+            <span className="standards-tag">Property Standard &bull; Hotel Pumerai</span>
+            <h3 className="standards-title">Every room booking always includes:</h3>
           </div>
           <div className="standards-grid">
             {includedEssentials.map((item) => (

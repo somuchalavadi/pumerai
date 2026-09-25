@@ -33,13 +33,13 @@ export default function ContactPage() {
             {/* Left Column: Contact Channels & NAP */}
             <div className="contact-info-col">
               <div className="contact-card-box">
-                <span className="card-mini-tag">DIRECT COMMUNICATIONS</span>
+                <span className="card-mini-tag">Direct Communications</span>
                 <h3 className="card-box-title">Get in Touch</h3>
                 <div className="brass-rule-small" />
 
                 <div className="contact-methods-stack">
                   <div className="method-item">
-                    <span className="method-label">DIRECT RESERVATIONS LINE</span>
+                    <span className="method-label">Direct Reservations Line</span>
                     <a href="tel:+919845423223" className="method-val primary-link">
                       +91 98454 23223
                     </a>
@@ -47,7 +47,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="method-item">
-                    <span className="method-label">HOTEL FRONT DESK / LANDLINE</span>
+                    <span className="method-label">Hotel Front Desk / Landline</span>
                     <a href="tel:+918387221221" className="method-val">
                       08387-221221
                     </a>
@@ -55,7 +55,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="method-item">
-                    <span className="method-label">WHATSAPP CHAT CONCIERGE</span>
+                    <span className="method-label">WhatsApp Chat Concierge</span>
                     <a
                       href={whatsappDirectUrl}
                       target="_blank"
@@ -68,14 +68,14 @@ export default function ContactPage() {
                   </div>
 
                   <div className="method-item">
-                    <span className="method-label">EMAIL RESERVATIONS</span>
+                    <span className="method-label">Email Reservations</span>
                     <a href="mailto:reservation@hotelpumerai.com" className="method-val">
                       reservation@hotelpumerai.com
                     </a>
                   </div>
 
                   <div className="method-item">
-                    <span className="method-label">POSTAL NAP ADDRESS</span>
+                    <span className="method-label">Postal Address</span>
                     <address className="method-address">
                       Hotel Pumerai
                       <br />
@@ -117,7 +117,7 @@ export default function ContactPage() {
             {/* Right Column: Contact & Booking Inquiry Form */}
             <div className="contact-form-col">
               <div className="form-wrapper-box">
-                <span className="card-mini-tag">SEND AN INQUIRY</span>
+                <span className="card-mini-tag">Send an Inquiry</span>
                 <h3 className="form-box-title">Direct Reservation Request</h3>
                 <p className="form-box-desc">
                   Fill in your details below for personalized room inquiries, group bookings, or special requests.

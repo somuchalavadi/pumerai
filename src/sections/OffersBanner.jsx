@@ -9,7 +9,7 @@ export default function OffersBanner() {
         <div className="offers-banner-card" data-reveal>
           <div className="offers-banner-badge">
             <span className="badge-shield">&#x2713;</span>
-            <span>BEST RATE GUARANTEE</span>
+            <span>Best Rate Guarantee</span>
           </div>
 
           <div className="offers-content-grid">
@@ -49,7 +49,7 @@ export default function OffersBanner() {
 
             <div className="offers-cta-col">
               <div className="cta-box-card">
-                <span className="cta-box-label">DIRECT BOOKING PROMO</span>
+                <span className="cta-box-label">Direct Booking Promo</span>
                 <span className="cta-box-price">SAVE 10% TODAY</span>
                 <p className="cta-box-note">Applied automatically on website &amp; WhatsApp</p>
 

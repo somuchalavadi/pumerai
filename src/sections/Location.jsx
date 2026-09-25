@@ -86,15 +86,63 @@ const transitDistances = [
 ];
 
 const hotelPolicies = [
-  { label: "CHECK-IN TIME", value: "From 1:00 PM (24-hr front desk welcomes late arrivals)" },
-  { label: "CHECK-OUT TIME", value: "Until 11:00 AM (Late checkout subject to availability)" },
-  { label: "POOL HOURS", value: "6:30 AM – 7:00 PM daily (Indoor & children's pool)" },
-  { label: "SMOKING POLICY", value: "100% Smoke-free rooms; designated outdoor smoking areas only" },
-  { label: "PET POLICY", value: "Pets are not accommodated to ensure allergy-free environments" },
-  { label: "PARKING & EV", value: "Complimentary secured private self-parking + EV charging stations" },
-  { label: "FRONT DESK", value: "24-hour manned reception, security & luggage assistance" },
-  { label: "CANCELLATION", value: "Free cancellation up to 24 hours prior to check-in for direct bookings" },
+  { label: "Check-in Time", value: "From 1:00 PM (24-hr front desk welcomes late arrivals)" },
+  { label: "Check-out Time", value: "Until 11:00 AM (Late checkout subject to availability)" },
+  { label: "Pool Hours", value: "6:30 AM – 7:00 PM daily (Indoor & children's pool)" },
+  { label: "Smoking Policy", value: "100% Smoke-free rooms; designated outdoor smoking areas only" },
+  { label: "Pet Policy", value: "Pets are not accommodated to ensure allergy-free environments" },
+  { label: "Parking & EV", value: "Complimentary secured private self-parking + EV charging stations" },
+  { label: "Front Desk", value: "24-hour manned reception, security & luggage assistance" },
+  { label: "Cancellation", value: "Free cancellation up to 24 hours prior to check-in for direct bookings" },
 ];
+
+function getCategoryIcon(type) {
+  switch (type) {
+    case "Beach":
+      return (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M2 12c3-1.5 6-1.5 9 0s6 1.5 9 0" />
+          <path d="M2 17c3-1.5 6-1.5 9 0s6 1.5 9 0" />
+        </svg>
+      );
+    case "Nature":
+    case "Eco Tourism":
+      return (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+        </svg>
+      );
+    case "Transit":
+      return (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="4" y="3" width="16" height="13" rx="2" />
+          <path d="m4 11 16 0" />
+          <path d="m8 16-2 3" />
+          <path d="m16 16 2 3" />
+        </svg>
+      );
+    case "Heritage":
+    case "Temple":
+      return (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M3 21h18" />
+          <path d="M5 21V10l7-5 7 5v11" />
+          <path d="M9 21v-4a3 3 0 0 1 6 0v4" />
+        </svg>
+      );
+    case "Day Trip":
+    case "Coastal Town":
+    case "District Base":
+    default:
+      return (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+        </svg>
+      );
+  }
+}
 
 export default function Location({ isStandalonePage = false }) {
   const officialGoogleMapsLink = "https://maps.app.goo.gl/rCfTnw9t8Dp58mga7";
@@ -108,7 +156,7 @@ export default function Location({ isStandalonePage = false }) {
             <div className="header-meta">
               <div className="editorial-tag">
                 <span className="accent-pip" />
-                <span>LOCATION &amp; GETTING HERE &bull; NH-66</span>
+                <span>Location &amp; Directions &bull; NH-66</span>
               </div>
               <h2 id="location-heading" className="section-title">
                 On the coastal <br />
@@ -162,7 +210,7 @@ export default function Location({ isStandalonePage = false }) {
                 className="button-secondary map-apple-btn"
                 aria-label="Open in Google Maps App"
               >
-                OPEN IN MAPS APP
+                Open in Maps
               </a>
             </div>
           </div>
@@ -170,7 +218,7 @@ export default function Location({ isStandalonePage = false }) {
           {/* Address & Highway Transit Box */}
           <div className="address-details-card">
             <div className="address-header">
-              <span className="address-tag">OFFICIAL PROPERTY NAP</span>
+              <span className="address-tag">Official Property Address</span>
               <h3 className="address-title">Hotel Pumerai</h3>
               <address className="address-body">
                 NH-66, near Ramateertha Cross,
@@ -185,15 +233,15 @@ export default function Location({ isStandalonePage = false }) {
 
             <div className="contact-quick-list">
               <div className="quick-item">
-                <span className="quick-label">RESERVATIONS PHONE</span>
+                <span className="quick-label">Reservations Phone</span>
                 <a href="tel:+919845423223" className="quick-val highlight">+91 98454 23223</a>
               </div>
               <div className="quick-item">
-                <span className="quick-label">HOTEL FRONT DESK</span>
+                <span className="quick-label">Hotel Front Desk</span>
                 <a href="tel:+918387221221" className="quick-val">08387-221221</a>
               </div>
               <div className="quick-item">
-                <span className="quick-label">WHATSAPP CONCIERGE</span>
+                <span className="quick-label">WhatsApp Concierge</span>
                 <a
                   href="https://wa.me/919845423223?text=Hi%20Hotel%20Pumerai%2C%20I%20would%20like%20directions%20and%20booking%20assistance."
                   target="_blank"
@@ -204,13 +252,13 @@ export default function Location({ isStandalonePage = false }) {
                 </a>
               </div>
               <div className="quick-item">
-                <span className="quick-label">EMAIL INQUIRIES</span>
+                <span className="quick-label">Email Inquiries</span>
                 <a href="mailto:reservation@hotelpumerai.com" className="quick-val">reservation@hotelpumerai.com</a>
               </div>
             </div>
 
             <div className="highway-note-box">
-              <span className="highway-badge">NH-66 DIRECT ACCESS</span>
+              <span className="highway-badge">NH-66 Direct Access</span>
               <p className="highway-text">
                 Situated right off the main highway with wide ingress/egress. No narrow village roads or steep inclines.
               </p>
@@ -220,7 +268,7 @@ export default function Location({ isStandalonePage = false }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button-secondary"
-                  style={{ fontSize: "0.72rem", padding: "8px 14px", width: "100%", textAlign: "center" }}
+                  style={{ fontSize: "0.75rem", padding: "8px 14px", width: "100%", textAlign: "center" }}
                 >
                   📍 Open in Google Maps
                 </a>
@@ -234,7 +282,7 @@ export default function Location({ isStandalonePage = false }) {
           <div className="landmarks-header">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>NEARBY LANDMARKS &amp; TRANSIT TIMES</span>
+              <span>Nearby Landmarks &amp; Transit Times</span>
             </div>
             <h3 className="landmarks-title">Proximity to Key Coastal Attractions</h3>
             <p className="landmarks-subtitle">
@@ -246,7 +294,10 @@ export default function Location({ isStandalonePage = false }) {
             {transitDistances.map((item) => (
               <div className="landmark-card" key={item.name}>
                 <div className="landmark-card-top">
-                  <span className="landmark-type-tag">{item.type}</span>
+                  <span className="landmark-type-tag">
+                    <span className="landmark-type-icon">{getCategoryIcon(item.type)}</span>
+                    <span>{item.type}</span>
+                  </span>
                   <div className="landmark-time-badge">
                     <span className="badge-dist">{item.distance}</span>
                     <span className="badge-sep">&bull;</span>
@@ -263,7 +314,7 @@ export default function Location({ isStandalonePage = false }) {
         {/* Stay Information & Hotel Policies */}
         <div className="policies-summary-card" data-reveal>
           <div className="policies-header">
-            <span className="policies-tag">ESSENTIAL POLICIES</span>
+            <span className="policies-tag">Essential Policies</span>
             <h3 className="policies-title">Stay Information &amp; Hotel Policies</h3>
           </div>
           <div className="policies-two-col-grid">

@@ -267,7 +267,7 @@ export default function RoomsPage() {
 
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>HOTEL PUMERAI &bull; DIRECT RESERVATION</span>
+              <span>Hotel Pumerai &bull; Direct Reservation</span>
             </div>
 
             <h3 id="room-popup-title" className="room-popup-title">

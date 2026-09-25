@@ -15,7 +15,7 @@ export default function DiningPreview({ onNavigate }) {
           <div className="header-meta">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>DINING &bull; HONNĀVAR</span>
+              <span>Dining &bull; Honnavar</span>
             </div>
             <h2 id="dining-preview-heading" className="section-title">
               Coastal Dining at <br />

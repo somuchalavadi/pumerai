@@ -192,7 +192,7 @@ export default function GallerySection({ isStandalonePage = false, onNavigate })
             <div className="header-meta">
               <div className="editorial-tag">
                 <span className="accent-pip" />
-                <span>VISUAL ARCHIVE &bull; HOTEL PUMERAI</span>
+                <span>Visual Archive &bull; Hotel Pumerai</span>
               </div>
               <h2 id="gallery-heading" className="section-title">
                 Moments of calm <br />
@@ -322,7 +322,7 @@ export default function GallerySection({ isStandalonePage = false, onNavigate })
                     />
                     <div className="gallery-card-overlay">
                       <span className="overlay-category">{item.categoryLabel}</span>
-                      <h4 className="overlay-title">{item.title}</h4>
+                      <h3 className="overlay-title">{item.title}</h3>
                       <span className="overlay-zoom-icon" aria-hidden="true">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="11" cy="11" r="8" />

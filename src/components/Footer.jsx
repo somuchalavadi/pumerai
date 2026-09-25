@@ -54,7 +54,7 @@ export default function Footer({ onNavigate }) {
           <div className="footer-badges-group">
             <div className="footer-score-pill">
               <span className="badge-rating-val">4.7 / 5</span>
-              <span className="badge-rating-text">GOOGLE REVIEWS &bull; VERIFIED STAY</span>
+              <span className="badge-rating-text">Google Reviews</span>
             </div>
             <button
               type="button"
@@ -72,7 +72,7 @@ export default function Footer({ onNavigate }) {
         <div className="footer-main-grid">
           {/* Col 1: Explore Navigation */}
           <nav className="footer-col" aria-label="Footer navigation links">
-            <h4 className="footer-col-title">EXPLORE PUMERAI</h4>
+            <h4 className="footer-col-title">Explore Pumerai</h4>
             <div className="footer-nav-links">
               {navLinks.map((item) => (
                 <a
@@ -89,24 +89,24 @@ export default function Footer({ onNavigate }) {
 
           {/* Col 2: Full Contact Block with semantic <address> */}
           <div className="footer-col">
-            <h4 className="footer-col-title">RESERVATIONS &amp; CONTACT</h4>
+            <h4 className="footer-col-title">Reservations &amp; Contact</h4>
             <address className="footer-contact-block">
               <div className="footer-contact-item">
-                <span className="contact-label">DIRECT RESERVATIONS</span>
+                <span className="contact-label">Direct Reservations</span>
                 <a href="tel:+919845423223" className="contact-link phone-link">
                   +91 98454 23223
                 </a>
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">HOTEL FRONT DESK (24/7)</span>
+                <span className="contact-label">Hotel Front Desk (24/7)</span>
                 <a href="tel:+918387221221" className="contact-link">
                   08387-221221
                 </a>
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">WHATSAPP INSTANT CHAT</span>
+                <span className="contact-label">WhatsApp Instant Chat</span>
                 <a
                   href="https://wa.me/919845423223?text=Hi%20Hotel%20Pumerai%2C%20I%20would%20like%20to%20inquire%20about%20room%20availability"
                   target="_blank"
@@ -118,14 +118,14 @@ export default function Footer({ onNavigate }) {
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">EMAIL RESERVATIONS</span>
+                <span className="contact-label">Email Reservations</span>
                 <a href="mailto:reservation@hotelpumerai.com" className="contact-link">
                   reservation@hotelpumerai.com
                 </a>
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">PROPERTY ADDRESS</span>
+                <span className="contact-label">Property Address</span>
                 <p className="contact-address-text">
                   Hotel Pumerai, NH-66, near Ramateertha Cross,
                   <br />
@@ -139,7 +139,7 @@ export default function Footer({ onNavigate }) {
 
           {/* Col 3: Location Thumbnail & Deep Links */}
           <div className="footer-col">
-            <h4 className="footer-col-title">LOCATION &amp; DIRECTIONS</h4>
+            <h4 className="footer-col-title">Location &amp; Directions</h4>
             <div className="footer-map-card">
               <a
                 href={officialGoogleMapsLink}
@@ -154,7 +154,7 @@ export default function Footer({ onNavigate }) {
                     <span className="pin-ring" />
                   </div>
                   <div className="map-thumb-overlay">
-                    <span className="map-btn-text">GET DIRECTIONS ON GOOGLE MAPS &rarr;</span>
+                    <span className="map-btn-text">Get Directions &rarr;</span>
                   </div>
                 </div>
               </a>
@@ -168,16 +168,16 @@ export default function Footer({ onNavigate }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-secondary"
-                style={{ fontSize: "0.7rem", padding: "8px 12px", textAlign: "center", marginTop: "4px" }}
+                style={{ fontSize: "0.75rem", padding: "8px 12px", textAlign: "center", marginTop: "4px" }}
               >
-                📍 Open Google Maps App
+                📍 Open in Maps
               </a>
             </div>
           </div>
 
           {/* Col 4: Verified Stays & Travel OTA Partners */}
           <div className="footer-col">
-            <h4 className="footer-col-title">VERIFIED REPUTATION</h4>
+            <h4 className="footer-col-title">Verified Reputation</h4>
             <p className="footer-partner-copy">
               Rated 4.7/5 on Google based on 237 guest reviews.
               Book directly with our front desk for personal assistance, free breakfast, and flexible cancellation.

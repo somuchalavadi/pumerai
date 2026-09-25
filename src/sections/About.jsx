@@ -1,14 +1,14 @@
 import { editorialFrames } from "../utils/frames.js";
 
 const keyFacts = [
-  { label: "PROPERTY RATING", value: "3-Star Boutique Hotel" },
-  { label: "GUEST ROOMS", value: "40 Contemporary Rooms" },
-  { label: "DINING ON-SITE", value: "2 Restaurants + Bar & Café" },
-  { label: "SWIMMING POOL", value: "Indoor + Kids Splash Pool" },
-  { label: "CONNECTIVITY", value: "Free 100+ Mbps WiFi" },
-  { label: "BEACH PROXIMITY", value: "~5 km to Kasarkod Eco Beach" },
-  { label: "RIVER PROXIMITY", value: "~2.8 km to Sharavati River" },
-  { label: "GUEST RATING", value: "4.7 / 5 on Google" },
+  { label: "Property Rating", value: "3-Star Boutique Hotel" },
+  { label: "Guest Rooms", value: "40 Contemporary Rooms" },
+  { label: "Dining On-Site", value: "2 Restaurants + Bar & Café" },
+  { label: "Swimming Pool", value: "Indoor + Kids Splash Pool" },
+  { label: "Connectivity", value: "Free 100+ Mbps WiFi" },
+  { label: "Beach Proximity", value: "~5 km to Kasarkod Eco Beach" },
+  { label: "River Proximity", value: "~2.8 km to Sharavati River" },
+  { label: "Guest Rating", value: "4.7 / 5 on Google" },
 ];
 
 export default function About() {
@@ -19,7 +19,7 @@ export default function About() {
           <div className="about-text-block" data-reveal>
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>ABOUT HOTEL PUMERAI &bull; HONNAVAR</span>
+              <span>About Hotel Pumerai &bull; Honnavar</span>
             </div>
             <h2 id="about-heading" className="section-title">
               A place to arrive.
@@ -63,7 +63,7 @@ export default function About() {
               />
             </div>
             <figcaption className="editorial-caption">
-              <span>01 &mdash; NH-66 ARRIVAL</span>
+              <span>01 &mdash; NH-66 Arrival</span>
               <span>Near Ramateertha Cross, Honnavar</span>
             </figcaption>
           </figure>

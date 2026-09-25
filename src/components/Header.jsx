@@ -66,7 +66,7 @@ export default function Header({ currentPath, onNavigate }) {
           <LogoMark />
           <div className="brand-text-wrap">
             <span className="brand-text">HOTEL PUMERAI</span>
-            <span className="brand-sub">HONNAVAR &bull; NH-66</span>
+            <span className="brand-sub">Honnavar &bull; NH-66</span>
           </div>
         </a>
 
@@ -121,7 +121,7 @@ export default function Header({ currentPath, onNavigate }) {
         <div className="mobile-drawer-backdrop" onClick={() => setIsOpen(false)} />
         <div className="mobile-drawer-body">
           <div className="mobile-drawer-header">
-            <span className="drawer-title">HOTEL PUMERAI &bull; MENU</span>
+            <span className="drawer-title">Hotel Pumerai &bull; Menu</span>
             <button
               type="button"
               className="drawer-close-btn"

@@ -51,7 +51,7 @@ export default function TrustReviews() {
           <div className="header-meta">
             <div className="editorial-tag">
               <span className="accent-pip" />
-              <span>GUEST EXPERIENCES &bull; GOOGLE REVIEWS</span>
+              <span>Guest Experiences &bull; Google Reviews</span>
             </div>
             <h2 id="reviews-heading" className="section-title">
               Loved by travellers <br />
@@ -93,9 +93,9 @@ export default function TrustReviews() {
           </div>
         </div>
 
-        {/* 3 Real Guest Quotes Grid */}
+        {/* Real Guest Quotes Grid (Only 4-star and 5-star reviews displayed) */}
         <div className="reviews-cards-grid" data-reveal>
-          {reviewsData.map((rev, idx) => {
+          {reviewsData.filter((rev) => rev.rating >= 4).map((rev, idx) => {
             const isExpanded = expandedCards[idx];
             const isLong = rev.quote.length > 250;
             return (
