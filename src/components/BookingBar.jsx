@@ -72,11 +72,19 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
     const handleOpenBooking = (event) => {
       if (event.detail?.room) {
         setSelectedRoom(event.detail.room);
-        setModalStep("request");
-      } else {
+      } else if (!event.detail?.checkIn) {
         setSelectedRoom("all");
-        setModalStep("select");
       }
+      if (event.detail?.checkIn) {
+        setCheckIn(event.detail.checkIn);
+      }
+      if (event.detail?.checkOut) {
+        setCheckOut(event.detail.checkOut);
+      }
+      if (event.detail?.guests) {
+        setGuests(event.detail.guests);
+      }
+      setModalStep(event.detail?.step || (event.detail?.room ? "request" : "select"));
       setIsModalOpen(true);
     };
 

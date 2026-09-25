@@ -2893,7 +2893,7 @@ a:focus-visible {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: #302B24;
+  background-color: var(--surface-clay);
 }
 
 .room-main-image {
@@ -4367,49 +4367,79 @@ a:focus-visible {
 /* Standalone Page Shell */
 .page-shell {
   min-height: 70vh;
-  padding-top: clamp(90px, 12vw, 130px);
+  padding-top: calc(var(--header-height-mobile) + 16px);
+}
+
+@media (min-width: 900px) {
+  .sticky-booking-bar ~ .page-shell {
+    padding-top: 0;
+  }
 }
 
 .page-header-compact,
 .page-hero-banner {
-  padding-block: clamp(28px, 4vw, 42px);
-  border-bottom: 1px solid var(--line-subtle);
-  background-color: var(--surface-clay);
+  padding-top: clamp(16px, 2.2vw, 24px);
+  padding-bottom: 0;
+  border-bottom: none;
+  background-color: transparent;
 }
 
 .page-header-eyebrow {
-  margin-bottom: 6px;
-  font-size: 0.78rem;
+  margin-bottom: 4px;
+  font-size: 0.72rem;
   letter-spacing: 0.16em;
 }
 
 @media (max-width: 767px) {
   .page-header-compact,
   .page-hero-banner {
-    padding-block: 22px 26px;
+    padding-top: 14px;
+    padding-bottom: 0;
   }
   .page-header-eyebrow {
-    font-size: 0.72rem;
-    margin-bottom: 4px;
+    font-size: 0.68rem;
+    margin-bottom: 3px;
   }
 }
 
 .page-header-title,
 .page-main-heading {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-size: clamp(1.7rem, 2.8vw, 2.35rem);
   color: var(--text-teak);
-  line-height: 1.12;
+  line-height: 1.15;
   margin: 0;
 }
 
 .page-header-desc,
 .page-main-desc {
-  font-size: clamp(0.95rem, 1.25vw, 1.18rem);
+  font-size: clamp(0.88rem, 1.1vw, 1.02rem);
   color: var(--text-umber);
-  max-width: 700px;
-  margin: 8px 0 0 0;
-  line-height: 1.5;
+  max-width: 680px;
+  margin: 6px 0 0 0;
+  line-height: 1.45;
+}
+
+/* Compact natural spacing on internal pages between PageHeader and main content */
+.page-shell .section,
+.page-shell > .section,
+.page-shell .rooms-full-listing-section,
+.page-shell .dining-section,
+.page-shell .gallery-section,
+.page-shell .location-section,
+.page-shell .contact-details-section,
+.page-shell .bar-lounge-detail-section {
+  padding-top: clamp(12px, 1.8vw, 18px);
+  padding-bottom: clamp(44px, 5.5vw, 72px);
+}
+
+/* Reset excessive top margins on first children within standalone page sections */
+.page-shell .dining-venues-grid,
+.page-shell .gallery-tabs-row,
+.page-shell .location-map-row,
+.page-shell .contact-main-grid,
+.page-shell .rooms-grid {
+  margin-top: 0;
 }
 
 /* ==========================================================================
@@ -5588,27 +5618,39 @@ a:focus-visible {
   .room-card-full {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
+    align-items: start;
   }
 }
 
 .room-card-full .room-media-box {
-  background-color: #26231E;
+  background-color: transparent;
+  align-self: start;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 .room-card-full .room-main-figure {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: #26231E;
+  background-color: var(--surface-clay);
   margin: 0;
+}
+
+.room-card-full .room-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .room-card-full .room-thumbnails-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  padding: 6px;
-  background-color: rgba(37, 35, 31, 0.04);
+  gap: 6px;
+  padding: 8px;
+  background-color: #FFFDF8;
   border-top: 1px solid var(--line-subtle);
 }
 
@@ -5616,10 +5658,11 @@ a:focus-visible {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border: 1.5px solid transparent;
-  border-radius: 1px;
+  border-radius: 2px;
   padding: 0;
   cursor: pointer;
-  opacity: 0.75;
+  background-color: var(--surface-clay);
+  opacity: 0.8;
   transition: opacity 200ms ease, border-color 200ms ease;
 }
 
@@ -5627,6 +5670,13 @@ a:focus-visible {
 .room-card-full .room-thumb-btn.is-active {
   opacity: 1;
   border-color: var(--accent-gold);
+}
+
+.room-card-full .room-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .room-card-full .room-card-content {
@@ -5733,17 +5783,18 @@ a:focus-visible {
 }
 
 .room-full-description-panel {
-  margin-block: 8px 12px;
-  padding: 12px 14px;
-  background-color: rgba(255, 253, 248, 0.6);
-  border-left: 2px solid var(--accent-champagne);
-  border-radius: 1px;
+  margin-block: 6px 10px;
+  padding: 10px 12px;
+  background-color: rgba(37, 35, 31, 0.03);
+  border-left: 2px solid var(--accent-gold);
+  border-radius: 2px;
 }
 
 .room-detailed-text {
   font-size: 0.84rem;
   line-height: 1.6;
   color: var(--text-teak);
+  margin: 0;
 }
 
 .room-details-toggle-btn {
@@ -5762,6 +5813,82 @@ a:focus-visible {
 
 .room-details-toggle-btn:hover {
   opacity: 0.8;
+}
+
+/* Date & Guest Selection Popup for Room Card CTA */
+.room-booking-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.room-booking-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(37, 35, 31, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.room-booking-popup-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 460px;
+  background-color: #FFFDF8;
+  border: 1px solid var(--accent-champagne);
+  border-radius: 2px;
+  box-shadow: 0 12px 40px rgba(37, 35, 31, 0.2);
+  padding: clamp(20px, 3.5vw, 30px);
+}
+
+.room-popup-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  color: var(--text-teak);
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.room-popup-room-badge {
+  font-size: 0.84rem;
+  color: var(--text-umber);
+  margin: 0 0 16px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.room-popup-room-badge strong {
+  color: var(--text-teak);
+}
+
+.room-popup-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 480px) {
+  .room-popup-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.room-popup-actions {
+  margin-top: 18px;
+}
+
+.room-popup-submit-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
 }
 
 /* ==========================================================================
