@@ -3108,26 +3108,28 @@ a:focus-visible {
 
 .amenities-icon-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin-top: clamp(28px, 4vw, 48px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: clamp(20px, 3vw, 36px);
 }
 
-@media (min-width: 540px) {
+@media (max-width: 360px) {
   .amenities-icon-grid {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 
-@media (min-width: 860px) {
+@media (min-width: 768px) {
   .amenities-icon-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
 }
 
-@media (min-width: 1120px) {
+@media (min-width: 1024px) {
   .amenities-icon-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 }
 
@@ -3135,11 +3137,33 @@ a:focus-visible {
   background-color: #FFFDF8;
   border: 1px solid var(--line-subtle);
   border-radius: 2px;
-  padding: 22px 18px;
+  padding: 14px 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  box-sizing: border-box;
+}
+
+@media (max-width: 360px) {
+  .amenity-grid-card {
+    padding: 12px 10px;
+    gap: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .amenity-grid-card {
+    padding: 18px 16px;
+    gap: 7px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .amenity-grid-card {
+    padding: 22px 20px;
+    gap: 8px;
+  }
 }
 
 .amenity-grid-card:hover {
@@ -3149,15 +3173,34 @@ a:focus-visible {
 }
 
 .amenity-icon-bubble {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-gold);
   background-color: rgba(154, 128, 82, 0.08);
   border-radius: 2px;
+  margin-bottom: 2px;
   transition: background-color 220ms ease, color 220ms ease;
+}
+
+.amenity-icon-bubble svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 1024px) {
+  .amenity-icon-bubble {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .amenity-icon-bubble svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .amenity-grid-card:hover .amenity-icon-bubble {
@@ -3167,15 +3210,40 @@ a:focus-visible {
 
 .amenity-card-title {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1rem;
+  line-height: 1.3;
   color: var(--text-teak);
-  margin-top: 2px;
+  margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 360px) {
+  .amenity-card-title {
+    font-size: 0.92rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .amenity-card-title {
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
 }
 
 .amenity-card-desc {
   font-size: 0.78rem;
   color: var(--text-umber);
-  line-height: 1.5;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 1024px) {
+  .amenity-card-desc {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
 }
 
 /* ==========================================================================
@@ -3544,19 +3612,14 @@ a:focus-visible {
 
 .overview-pillars {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px 20px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 500px) {
   .overview-pillars {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .overview-pillars {
-    grid-template-columns: repeat(5, 1fr);
+    gap: 8px 12px;
   }
 }
 
@@ -3861,6 +3924,135 @@ a:focus-visible {
   right: 0;
   height: 2px;
   background-color: var(--accent-gold);
+}
+
+/* ==========================================================================
+   HOMEPAGE GALLERY HORIZONTAL SLIDER
+   ========================================================================== */
+
+.homepage-gallery-slider-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(20px, 3.5vw, 36px);
+}
+
+.gallery-slider-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  --gallery-gap: 16px;
+  --visible-items: 4;
+}
+
+.gallery-slider-viewport:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 1023px) {
+  .gallery-slider-viewport {
+    --gallery-gap: 12px;
+    --visible-items: 3;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery-slider-viewport {
+    --gallery-gap: 10px;
+    --visible-items: 3;
+  }
+}
+
+@media (max-width: 360px) {
+  .gallery-slider-viewport {
+    --gallery-gap: 8px;
+    --visible-items: 3;
+  }
+}
+
+.gallery-slider-track {
+  display: flex;
+  flex-direction: row;
+  will-change: transform;
+  gap: var(--gallery-gap);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.gallery-slide-item {
+  flex: 0 0 calc((100% - (var(--visible-items) - 1) * var(--gallery-gap)) / var(--visible-items));
+  width: calc((100% - (var(--visible-items) - 1) * var(--gallery-gap)) / var(--visible-items));
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.gallery-slide-figure {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #302B24;
+  border: 1px solid var(--line-subtle);
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.gallery-slide-figure:hover {
+  border-color: var(--accent-champagne);
+  box-shadow: 0 6px 20px rgba(37, 35, 31, 0.08);
+}
+
+.gallery-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms ease;
+}
+
+.gallery-slide-figure:hover .gallery-slide-img {
+  transform: scale(1.03);
+}
+
+.gallery-slider-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gallery-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gallery-nav-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  border: 1px solid var(--line-subtle);
+  background: var(--surface-clay);
+  color: var(--text-teak);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+.gallery-nav-arrow:hover {
+  background-color: var(--accent-gold);
+  color: #FFFDF8;
+  border-color: var(--accent-gold);
 }
 
 .gallery-photos-grid {
@@ -4919,7 +5111,7 @@ a:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-block: 20px 24px;
+  margin-block: 20px 8px;
   padding-block: 16px;
   border-block: 1px solid var(--line-subtle);
 }

@@ -8,14 +8,10 @@ const keyFacts = [
   { label: "CONNECTIVITY", value: "Free 100+ Mbps WiFi" },
   { label: "BEACH PROXIMITY", value: "~5 km to Kasarkod Eco Beach" },
   { label: "RIVER PROXIMITY", value: "~2.8 km to Sharavati River" },
-  { label: "GUEST RATING", value: "10/10 \"Exceptional\" Score" },
+  { label: "GUEST RATING", value: "4.7 / 5 on Google" },
 ];
 
 export default function About() {
-  const handleOpenBooking = () => {
-    window.dispatchEvent(new CustomEvent("pumerai:open-booking"));
-  };
-
   return (
     <section className="section about-section" id="about" aria-labelledby="about-heading">
       <div className="section-container">
@@ -55,19 +51,6 @@ export default function About() {
                   <strong className="fact-val">{fact.value}</strong>
                 </div>
               ))}
-            </div>
-
-            <div className="about-actions-row">
-              <button
-                type="button"
-                className="button-primary"
-                onClick={handleOpenBooking}
-              >
-                CHECK AVAILABILITY
-              </button>
-              <a href="#rooms" className="button-secondary">
-                EXPLORE ACCOMMODATION
-              </a>
             </div>
           </div>
 

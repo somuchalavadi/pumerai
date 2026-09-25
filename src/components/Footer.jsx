@@ -53,15 +53,15 @@ export default function Footer({ onNavigate }) {
 
           <div className="footer-badges-group">
             <div className="footer-score-pill">
-              <span className="badge-rating-val">10/10</span>
-              <span className="badge-rating-text">EXCEPTIONAL &bull; GOOGLE STAYS</span>
+              <span className="badge-rating-val">4.7 / 5</span>
+              <span className="badge-rating-text">GOOGLE REVIEWS &bull; VERIFIED STAY</span>
             </div>
             <button
               type="button"
               className="button-primary footer-book-btn"
               onClick={handleOpenBooking}
             >
-              BOOK DIRECT &amp; SAVE 10%
+              BOOK DIRECT ON WHATSAPP
             </button>
           </div>
         </div>
@@ -179,13 +179,13 @@ export default function Footer({ onNavigate }) {
           <div className="footer-col">
             <h4 className="footer-col-title">VERIFIED REPUTATION</h4>
             <p className="footer-partner-copy">
-              Ranked 10/10 &ldquo;Exceptional&rdquo; across major hospitality networks.
-              Book directly on this site for our lowest price guarantee, free breakfast, and flexible cancellation.
+              Rated 4.7/5 on Google based on 237 guest reviews.
+              Book directly with our front desk for personal assistance, free breakfast, and flexible cancellation.
             </p>
             <div className="footer-trust-chips">
               <span className="trust-chip">&#x2713; Google Business Verified</span>
-              <span className="trust-chip">&#x2713; Booking.com 10/10 Score</span>
-              <span className="trust-chip">&#x2713; Best Rate Direct Guarantee</span>
+              <span className="trust-chip">&#x2713; 4.7/5 Guest Rating</span>
+              <span className="trust-chip">&#x2713; Direct Front Desk Support</span>
               <span className="trust-chip">&#x2713; 24-Hour Secured Parking</span>
             </div>
           </div>

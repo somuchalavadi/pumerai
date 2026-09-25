@@ -40,7 +40,7 @@ function HomePage({ onNavigate }) {
       <AmenitiesGrid />
       <Dining />
       <TrustReviews />
-      <GallerySection />
+      <GallerySection onNavigate={onNavigate} />
       <Location />
       <FAQ />
     </main>

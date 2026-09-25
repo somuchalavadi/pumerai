@@ -3,6 +3,7 @@ import { venuesData } from "../data/dining.js";
 
 export default function Dining({ sectionId = "dining", headingId = "dining-heading", isStandalonePage = false, onNavigate }) {
   const [activeMenuVenue, setActiveMenuVenue] = useState(null);
+  const restaurantVenues = venuesData.filter((v) => v.id !== "madira");
 
   const handleOpenMenu = (venue) => {
     setActiveMenuVenue(venue);
@@ -29,16 +30,15 @@ export default function Dining({ sectionId = "dining", headingId = "dining-headi
               </h2>
             </div>
             <p className="header-summary">
-              Hotel Pumerai houses two distinctive on-site restaurants and an evening lounge.
-              Whether craving fresh Karavali seafood, pure vegetarian delicacies, or a quiet evening cocktail,
-              our kitchens emphasize fresh local sourcing and coastal hospitality.
+              Hotel Pumerai houses two distinctive on-site restaurants: Matsya for coastal Karavali seafood
+              and North Indian cuisine, and Madhura for authentic pure vegetarian specialties.
             </p>
           </header>
         )}
 
         {/* Venues Grid */}
         <div className="dining-venues-grid">
-          {venuesData.map((venue) => (
+          {restaurantVenues.map((venue) => (
             <article className="venue-card" key={venue.id} data-reveal>
               <div className="venue-media-container">
                 <figure className="venue-figure">
@@ -97,22 +97,6 @@ export default function Dining({ sectionId = "dining", headingId = "dining-headi
                   >
                     RESERVE A TABLE
                   </a>
-
-                  {venue.id === "madira" && (
-                    <a
-                      href="/bar-lounge"
-                      onClick={(e) => {
-                        if (onNavigate) {
-                          e.preventDefault();
-                          onNavigate({ route: "/bar-lounge" });
-                        }
-                      }}
-                      className="button-secondary"
-                      style={{ textDecoration: "none" }}
-                    >
-                      LOUNGE DETAILS &rarr;
-                    </a>
-                  )}
                 </div>
               </div>
             </article>

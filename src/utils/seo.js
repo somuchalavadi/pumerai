@@ -24,7 +24,7 @@ export const siteConfig = {
   },
   checkinTime: "13:00",
   checkoutTime: "11:00",
-  priceRange: "₹2499 - ₹4999",
+  priceRange: "₹₹",
   starRating: "3",
 };
 

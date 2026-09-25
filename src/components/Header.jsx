@@ -5,6 +5,7 @@ const navItems = [
   { label: "Home", route: "/" },
   { label: "Rooms", route: "/rooms" },
   { label: "Dining", route: "/dining" },
+  { label: "Bar & Lounge", route: "/bar-lounge" },
   { label: "Gallery", route: "/gallery" },
   { label: "Location", route: "/location" },
   { label: "Contact", route: "/contact" },
@@ -153,7 +154,7 @@ export default function Header({ currentPath, onNavigate }) {
               className="button-primary mobile-drawer-book-btn"
               onClick={handleOpenBooking}
             >
-              BOOK NOW &bull; SAVE 10%
+              BOOK NOW
             </button>
 
             <div className="mobile-drawer-contact">

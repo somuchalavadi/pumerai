@@ -235,7 +235,7 @@ export default function HeroSequence({ onNavigate }) {
         />
         <div className="hero-copy">
           <div className="hero-trust-badge">
-            <span className="trust-star">&#9733; 10/10 Exceptional</span>
+            <span className="trust-star">&#9733; 4.7/5 Google Rating</span>
             <span className="trust-sep">&bull;</span>
             <span>Google Stays &bull; 40 Rooms</span>
           </div>
@@ -278,7 +278,7 @@ export default function HeroSequence({ onNavigate }) {
         <div className={`hero-copy ${isReady ? "is-visible" : ""}`} key={storyIndex}>
           {/* Trust Signal Badge directly in hero */}
           <div className="hero-trust-badge">
-            <span className="trust-star">&#9733; 10/10 Exceptional</span>
+            <span className="trust-star">&#9733; 4.7/5 Google Rating</span>
             <span className="trust-sep">&bull;</span>
             <span>Google Stays &bull; 40 Rooms &bull; 3-Star Property</span>
           </div>

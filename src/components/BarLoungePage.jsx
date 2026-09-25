@@ -24,20 +24,19 @@ export default function BarLoungePage({ onNavigate }) {
         <div className="section-container">
           <div className="editorial-tag">
             <span className="accent-pip" />
-            <span>LOUNGE &bull; HONNĀVAR</span>
+            <span>BAR &amp; LOUNGE &bull; HONNĀVAR</span>
           </div>
           <h1 className="page-main-heading">
-            Madira Bar &amp; <br />
-            <span className="title-italic">Lounge at Hotel Pumerai</span>
+            Madira Bar &amp; Lounge
           </h1>
           <p className="page-main-desc">
-            Fine spirits, coastal coolers, gourmet coffee, and savory appetizers along NH-66 in Honnāvar.
+            Fine spirits, coastal mocktails, finger bites and coffee at Hotel Pumerai, Honnāvar.
           </p>
         </div>
       </div>
 
       {/* Actual Bar & Lounge Content */}
-      <section className="section bar-lounge-detail-section" aria-label="Madira Bar & Lounge Details">
+      <section className="section bar-lounge-detail-section" id="madira-details" aria-label="Madira Bar & Lounge Details">
         <div className="section-container">
           <div className="dining-venues-grid">
             <article className="venue-card" id={madiraVenue.id} data-reveal>
@@ -58,7 +57,7 @@ export default function BarLoungePage({ onNavigate }) {
 
               <div className="venue-info-container">
                 <div className="venue-meta-header">
-                  <span className="venue-eyebrow">EVENING RETREAT &bull; COCKTAILS &bull; COFFEE</span>
+                  <span className="venue-eyebrow">FINE SPIRITS, COASTAL MOCKTAILS, FINGER BITES &amp; COFFEE</span>
                   <h2 className="venue-title">{madiraVenue.name}</h2>
                   <p className="venue-subtitle">{madiraVenue.subtitle}</p>
                 </div>
@@ -68,13 +67,13 @@ export default function BarLoungePage({ onNavigate }) {
                 <p className="venue-desc">{madiraVenue.description}</p>
 
                 <div className="venue-timing-box">
-                  <span className="timing-label">SERVICE TIMINGS:</span>
-                  <span className="timing-value">{madiraVenue.mealTimes}</span>
+                  <span className="timing-label">OPENING HOURS:</span>
+                  <span className="timing-value">{madiraVenue.hours}</span>
                 </div>
 
                 {/* Signature Drinks / Dishes */}
                 <div className="venue-signatures">
-                  <span className="signatures-header">SIGNATURE SELECTIONS:</span>
+                  <span className="signatures-header">SIGNATURE HIGHLIGHTS:</span>
                   <ul className="signatures-list">
                     {madiraVenue.signatureDishes.map((dish) => (
                       <li key={dish.name} className="signature-dish-item">
@@ -86,36 +85,31 @@ export default function BarLoungePage({ onNavigate }) {
                 </div>
 
                 {/* Action Row */}
-                <div className="venue-action-row" style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                <div className="venue-action-row" style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center" }}>
                   <button
                     type="button"
                     className="button-primary open-menu-btn"
                     onClick={() => handleOpenMenu(madiraVenue)}
                   >
-                    VIEW BAR &amp; BITES MENU
+                    VIEW CURATED MENU
                   </button>
                   <a
-                    href={whatsappInquiryUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="tel:+919845423223"
                     className="button-whatsapp-instant"
                     style={{ textDecoration: "none" }}
                   >
-                    Inquire on WhatsApp
+                    RESERVE A TABLE
                   </a>
-                  <a
-                    href="/dining"
-                    onClick={(e) => {
-                      if (onNavigate) {
-                        e.preventDefault();
-                        onNavigate({ route: "/dining" });
-                      }
-                    }}
+                  <button
+                    type="button"
                     className="button-secondary"
-                    style={{ textDecoration: "none" }}
+                    onClick={() => {
+                      const el = document.getElementById("madira-details");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
                   >
-                    Explore On-Site Dining &rarr;
-                  </a>
+                    LOUNGE DETAILS
+                  </button>
                 </div>
               </div>
             </article>

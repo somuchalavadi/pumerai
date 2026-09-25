@@ -165,30 +165,20 @@ export default function RoomsPage() {
                       {isExpanded ? "Show Less Details ↑" : "View Full Details & Amenities ↓"}
                     </button>
 
-                    {/* Pricing & CTA Row */}
-                    <div className="room-pricing-cta-row">
-                      <div className="room-price-block">
-                        <span className="price-prefix">From</span>
-                        <div className="price-amount-wrap">
-                          <span className="price-currency">₹</span>
-                          <span className="price-number">
-                            {room.startingPrice.toLocaleString("en-IN")}
-                          </span>
-                          <span className="price-period">/ night</span>
-                        </div>
-                        <span className="price-note">Direct rate &bull; Free breakfast</span>
-                      </div>
-
-                      <div className="room-action-buttons">
-                        <button
-                          type="button"
-                          className="button-primary room-book-btn"
-                          onClick={() => handleBookRoom(room.slug)}
-                          aria-label={`Book ${room.name} directly`}
-                        >
-                          BOOK THIS ROOM
-                        </button>
-                      </div>
+                    {/* Booking CTA Row */}
+                    <div className="room-pricing-cta-row" style={{ justifyContent: "flex-end" }}>
+                      <a
+                        href={`https://wa.me/919845423223?text=${encodeURIComponent(
+                          `Hello Hotel Pumerai, I would like to inquire about booking the ${room.name}.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button-whatsapp-instant"
+                        style={{ textDecoration: "none", width: "100%", justifyContent: "center" }}
+                        aria-label={`Book ${room.name} on WhatsApp`}
+                      >
+                        BOOK ON WHATSAPP
+                      </a>
                     </div>
                   </div>
                 </article>

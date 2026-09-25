@@ -2,11 +2,10 @@ import { useEffect, useState, useId } from "react";
 import { rooms } from "../data/rooms.js";
 
 const ROOM_OPTIONS = [
-  { id: "all", name: "All Room Types", price: 2799 },
+  { id: "all", name: "All Room Types" },
   ...rooms.map((r) => ({
     id: r.slug,
     name: r.name,
-    price: r.startingPrice,
     size: r.size,
     capacity: r.occupancy,
   })),
@@ -72,6 +71,8 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
     const handleOpenBooking = (event) => {
       if (event.detail?.room) {
         setSelectedRoom(event.detail.room);
+      } else {
+        setSelectedRoom("all");
       }
       setIsModalOpen(true);
     };
@@ -119,11 +120,6 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
   const nights = calculateNights(checkIn, checkOut);
 
   const matchedRoom = ROOM_OPTIONS.find((r) => r.id === selectedRoom) || ROOM_OPTIONS[0];
-  const baseRate = matchedRoom.price;
-  const otaRate = Math.round(baseRate * 1.15); // standard OTA markup
-  const totalDirectRate = baseRate * nights;
-  const totalOtaRate = otaRate * nights;
-  const totalSavings = totalOtaRate - totalDirectRate;
 
   // Format WhatsApp Link
   const buildWhatsAppLink = () => {
@@ -134,7 +130,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
       `• Check-Out: ${checkOut} (${nights} night${nights > 1 ? "s" : ""})\n` +
       `• Guests: ${guests}\n` +
       `• Inclusions: Free Breakfast Buffet, WiFi, Pool & Parking\n` +
-      `Please confirm best available rate. Thank you!`
+      `Please confirm best available rate and reservation details. Thank you!`
     );
     return `https://wa.me/919845423223?text=${message}`;
   };
@@ -159,11 +155,11 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
             {/* Trust Badge */}
             <div className="booking-trust-badge" title="Verified rating on Google Stays">
               <div className="rating-pill">
-                <span className="rating-score">10/10</span>
-                <span className="rating-label">EXCEPTIONAL</span>
+                <span className="rating-score">4.7 / 5</span>
+                <span className="rating-label">GOOGLE RATED</span>
               </div>
               <span className="trust-divider">|</span>
-              <span className="trust-perk">Direct Savings: 10% Off</span>
+              <span className="trust-perk">Direct WhatsApp Booking</span>
             </div>
 
             {/* Form Fields */}
@@ -252,7 +248,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
                 >
                   {ROOM_OPTIONS.map((opt) => (
                     <option key={opt.id} value={opt.id}>
-                      {opt.name} {opt.id !== "all" ? `(from ₹${opt.price.toLocaleString("en-IN")})` : ""}
+                      {opt.name}
                     </option>
                   ))}
                 </select>
@@ -330,7 +326,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
               </div>
 
               <div className="mobile-meta-row">
-                <span className="mobile-rating-pill">10/10</span>
+                <span className="mobile-rating-pill">4.7 / 5</span>
                 <span className="mobile-nights-text">{nights} {nights > 1 ? "Nights" : "Night"}</span>
               </div>
             </div>
@@ -382,7 +378,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
                       <span className="calc-val">{matchedRoom.name}</span>
                     </div>
                     <div className="calc-row">
-                      <span className="calc-label">Dates</span>
+                      <span className="calc-label">Stay Dates</span>
                       <span className="calc-val">
                         {checkIn} to {checkOut} ({nights} night{nights > 1 ? "s" : ""})
                       </span>
@@ -392,16 +388,8 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
                       <span className="calc-val">{guests}</span>
                     </div>
                     <div className="calc-divider" />
-                    <div className="calc-row rate-compare">
-                      <span className="calc-label">Standard OTA Rate</span>
-                      <span className="calc-ota-strike">₹{totalOtaRate.toLocaleString("en-IN")}</span>
-                    </div>
-                    <div className="calc-row rate-direct">
-                      <span className="calc-label font-bold">Direct Booking Rate</span>
-                      <span className="calc-direct-price">₹{totalDirectRate.toLocaleString("en-IN")}*</span>
-                    </div>
-                    <div className="savings-callout">
-                      You save ₹{totalSavings.toLocaleString("en-IN")} booking direct + receive free breakfast!
+                    <div className="reservation-badge-note">
+                      <span>✓ Direct Front Desk Reservation Request</span>
                     </div>
                   </div>
 
@@ -545,7 +533,7 @@ export default function BookingBar({ initialRoom = null, isHomeSection = false }
                   <strong>{matchedRoom.name}</strong> from <strong>{checkIn}</strong> to <strong>{checkOut}</strong>.
                 </p>
                 <div className="success-summary-box">
-                  <p>Our front desk at NH-66 Honnavar will contact you at <strong>{guestPhone}</strong> shortly with your confirmed booking voucher and direct discount.</p>
+                  <p>Our front desk at NH-66 Honnavar will contact you at <strong>{guestPhone}</strong> shortly with your confirmed booking voucher and direct reservation details.</p>
                 </div>
                 <div className="success-actions">
                   <a

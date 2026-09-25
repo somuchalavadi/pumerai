@@ -47,7 +47,7 @@ export default function RoomsPreview({ onNavigate }) {
                 onClick={handleViewAllRooms}
                 aria-label="View all seven rooms on dedicated rooms page"
               >
-                <span>VIEW ALL 7 ROOMS &amp; RATES &rarr;</span>
+                <span>VIEW ALL 7 ROOM TYPES &rarr;</span>
               </a>
             </div>
           </div>
