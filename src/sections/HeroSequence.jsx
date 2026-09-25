@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FRAME_COUNT, framePath } from "../utils/frames.js";
+import { HERO_FRAME_COUNT, heroFramePath } from "../utils/frames.js";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -59,7 +59,7 @@ export default function HeroSequence({ onNavigate }) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const progress = useMemo(() => {
-    return Math.round(((loadedCount + failedCount) / FRAME_COUNT) * 100);
+    return Math.round(((loadedCount + failedCount) / HERO_FRAME_COUNT) * 100);
   }, [loadedCount, failedCount]);
 
   const renderFrame = (frameIndex) => {
@@ -124,7 +124,7 @@ export default function HeroSequence({ onNavigate }) {
             if (index === 0) {
               resizeCanvas();
             }
-            if (loaded >= 36 || loaded + failed === FRAME_COUNT) {
+            if (loaded >= 36 || loaded + failed === HERO_FRAME_COUNT) {
               setIsReady(true);
             }
           }
@@ -134,17 +134,17 @@ export default function HeroSequence({ onNavigate }) {
           failed += 1;
           if (!isCancelled) {
             setFailedCount(failed);
-            if (loaded >= 1 || loaded + failed === FRAME_COUNT) {
+            if (loaded >= 1 || loaded + failed === HERO_FRAME_COUNT) {
               setIsReady(true);
             }
           }
           resolve();
         };
-        image.src = framePath(index + 1);
+        image.src = heroFramePath(index + 1);
       });
 
     const worker = async () => {
-      while (!isCancelled && nextIndex < FRAME_COUNT) {
+      while (!isCancelled && nextIndex < HERO_FRAME_COUNT) {
         const index = nextIndex;
         nextIndex += 1;
         await loadFrame(index);
@@ -188,8 +188,8 @@ export default function HeroSequence({ onNavigate }) {
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextFrame = Math.min(
-            FRAME_COUNT - 1,
-            Math.max(0, Math.round(self.progress * (FRAME_COUNT - 1))),
+            HERO_FRAME_COUNT - 1,
+            Math.max(0, Math.round(self.progress * (HERO_FRAME_COUNT - 1))),
           );
           const nextStoryIndex = Math.min(
             storyMoments.length - 1,
@@ -229,7 +229,7 @@ export default function HeroSequence({ onNavigate }) {
     return (
       <section className="hero hero-static" id="home" aria-label="Hotel Pumerai Honnavar">
         <img
-          src={framePath(1)}
+          src={heroFramePath(1)}
           alt="Hotel Pumerai boutique 3-star property on NH-66 Honnavar Karnataka"
           className="hero-static-img"
         />
