@@ -1,7 +1,7 @@
 import logo from "../assets/pumerai-logo.png";
 
-function LogoMark({ className = "", label = "Pumerai Hotel" }) {
-  return <img className={`logo-mark ${className}`} src={logo} alt={label} />;
+function LogoMark({ className = "", label = "Pumerai Hotel", src = logo }) {
+  return <img className={`logo-mark ${className}`} src={src} alt={label} />;
 }
 
 export default LogoMark;

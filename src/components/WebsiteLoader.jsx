@@ -88,7 +88,7 @@ export default function WebsiteLoader() {
     >
       <div className="website-loader-inner">
         <img
-          src="/pumerai%20logo.png"
+          src="/Untitled%20design%20(22)_result.webp"
           alt="Hotel Pumerai"
           className="website-loader-logo"
           width="340"
