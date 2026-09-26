@@ -6,8 +6,8 @@
 :root {
   color-scheme: light;
 
-  /* Warm ivory, charcoal, and antique gold palette. */
-  --bg-sand: #F7F5F0;
+  /* Pure white main background, charcoal, and antique gold palette. */
+  --bg-sand: #FFFFFF;
   --surface-clay: #EEEAE2;
   --surface-card: #FFFDF8;
   --text-teak: #25231F;
