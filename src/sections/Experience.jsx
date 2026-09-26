@@ -1,4 +1,3 @@
-import { editorialFrames } from "../utils/frames.js";
 
 const amenities = [
   {
@@ -77,7 +76,7 @@ function Experience() {
         <div className="featured-amenity-block pool-highlight" data-reveal>
           <figure className="figure-inner">
             <img
-              src={editorialFrames.pool}
+              src="/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_42%20AM_result.webp"
               alt="Hotel Pumerai signature glass-edge swimming pool"
               loading="lazy"
             />

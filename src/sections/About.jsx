@@ -1,4 +1,3 @@
-import { editorialFrames } from "../utils/frames.js";
 
 const keyFacts = [
   { label: "Property Rating", value: "3-Star Boutique Hotel" },
@@ -57,7 +56,7 @@ export default function About() {
           <figure className="editorial-figure about-figure" data-reveal>
             <div className="figure-inner">
               <img
-                src={editorialFrames.arrival}
+                src="/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_23_21%20AM_result.webp"
                 alt="Hotel Pumerai architectural entrance portico on NH-66 Honnavar Karnataka"
                 loading="lazy"
               />

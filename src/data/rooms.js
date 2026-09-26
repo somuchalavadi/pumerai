@@ -1,4 +1,3 @@
-import { editorialFrames, framePath } from "../utils/frames.js";
 
 /**
  * Single Source of Truth for all Hotel Pumerai Room Types.
@@ -14,7 +13,7 @@ export const rooms = [
     name: "Club Room with Balcony",
     folder: "/rooms/club-room-with-balcony/",
     coverImage: "/rooms/club-room-with-balcony/ChatGPT Image Sep 24, 2026, 09_22_33 PM_result.webp",
-    fallbackImage: editorialFrames.roomTwo, // frame 206
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/club-room-with-balcony/ChatGPT Image Sep 24, 2026, 09_22_33 PM_result.webp",
       "/rooms/club-room-with-balcony/ChatGPT Image Sep 24, 2026, 09_22_43 PM_result.webp",
@@ -22,10 +21,10 @@ export const rooms = [
       "/rooms/club-room-with-balcony/ChatGPT Image Sep 25, 2026, 01_08_21 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(206),
-      framePath(208),
-      framePath(212),
-      framePath(214),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Private Glass Balcony & Pool Outlook",
     shortDescription:
@@ -51,7 +50,7 @@ export const rooms = [
     name: "Club Room",
     folder: "/rooms/club-room/",
     coverImage: "/rooms/club-room/ChatGPT Image Sep 24, 2026, 08_05_39 PM_result.webp",
-    fallbackImage: editorialFrames.roomThree, // frame 218
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/club-room/ChatGPT Image Sep 24, 2026, 08_05_39 PM_result.webp",
       "/rooms/club-room/ChatGPT Image Sep 24, 2026, 08_05_46 PM_result.webp",
@@ -59,10 +58,10 @@ export const rooms = [
       "/rooms/club-room/ChatGPT Image Sep 24, 2026, 08_05_58 PM_result.webp",
     ],
     fallbackGallery: [
-      framePath(218),
-      framePath(220),
-      framePath(224),
-      framePath(226),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Generous Contemporary Living",
     shortDescription:
@@ -88,7 +87,7 @@ export const rooms = [
     name: "Deluxe Room",
     folder: "/rooms/deluxe-room/",
     coverImage: "/rooms/deluxe-room/ChatGPT Image Sep 24, 2026, 09_22_33 PM_result.webp",
-    fallbackImage: editorialFrames.roomOne, // frame 198
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/deluxe-room/ChatGPT Image Sep 24, 2026, 09_22_33 PM_result.webp",
       "/rooms/deluxe-room/ChatGPT Image Sep 24, 2026, 09_22_43 PM_result.webp",
@@ -96,10 +95,10 @@ export const rooms = [
       "/rooms/deluxe-room/ChatGPT Image Sep 25, 2026, 01_08_21 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(198),
-      framePath(194),
-      framePath(202),
-      framePath(204),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Essential Coastal Calm",
     shortDescription:
@@ -125,7 +124,7 @@ export const rooms = [
     name: "Family Suite Room",
     folder: "/rooms/family-suite-room/",
     coverImage: "/rooms/family-suite-room/ChatGPT Image Sep 25, 2026, 01_47_34 AM_result.webp",
-    fallbackImage: framePath(220),
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/family-suite-room/ChatGPT Image Sep 25, 2026, 01_47_34 AM_result.webp",
       "/rooms/family-suite-room/ChatGPT Image Sep 25, 2026, 01_47_40 AM_result.webp",
@@ -133,10 +132,10 @@ export const rooms = [
       "/rooms/family-suite-room/ChatGPT Image Sep 25, 2026, 01_47_46 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(220),
-      framePath(218),
-      framePath(224),
-      framePath(226),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Two-Room Suite for Families",
     shortDescription:
@@ -162,7 +161,7 @@ export const rooms = [
     name: "Premium Room",
     folder: "/rooms/premium-room/",
     coverImage: "/rooms/premium-room/ChatGPT Image Sep 25, 2026, 02_03_35 AM_result.webp",
-    fallbackImage: framePath(194),
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/premium-room/ChatGPT Image Sep 25, 2026, 02_03_35 AM_result.webp",
       "/rooms/premium-room/ChatGPT Image Sep 25, 2026, 02_03_42 AM_result.webp",
@@ -170,10 +169,10 @@ export const rooms = [
       "/rooms/premium-room/ChatGPT Image Sep 25, 2026, 02_04_00 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(194),
-      framePath(198),
-      framePath(202),
-      framePath(204),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Garden View Tranquility",
     shortDescription:
@@ -199,7 +198,7 @@ export const rooms = [
     name: "Premium Twin Room",
     folder: "/rooms/premium-twin-room/",
     coverImage: "/rooms/premium-twin-room/ChatGPT Image Sep 25, 2026, 02_47_30 AM_result.webp",
-    fallbackImage: framePath(204),
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/premium-twin-room/ChatGPT Image Sep 25, 2026, 02_47_30 AM_result.webp",
       "/rooms/premium-twin-room/ChatGPT Image Sep 25, 2026, 02_47_35 AM_result.webp",
@@ -207,10 +206,10 @@ export const rooms = [
       "/rooms/premium-twin-room/ChatGPT Image Sep 25, 2026, 02_47_40 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(204),
-      framePath(198),
-      framePath(202),
-      framePath(194),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Two Twin Beds for Flexible Stays",
     shortDescription:
@@ -236,7 +235,7 @@ export const rooms = [
     name: "Suite Room",
     folder: "/rooms/suite-room/",
     coverImage: "/rooms/suite-room/ChatGPT Image Sep 25, 2026, 02_56_20 AM_result.webp",
-    fallbackImage: editorialFrames.roomFour, // frame 232
+    fallbackImage: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
     galleryPhotos: [
       "/rooms/suite-room/ChatGPT Image Sep 25, 2026, 02_56_20 AM_result.webp",
       "/rooms/suite-room/ChatGPT Image Sep 25, 2026, 02_56_23 AM_result.webp",
@@ -244,10 +243,10 @@ export const rooms = [
       "/rooms/suite-room/ChatGPT Image Sep 25, 2026, 02_56_28 AM_result.webp",
     ],
     fallbackGallery: [
-      framePath(232),
-      framePath(228),
-      framePath(236),
-      framePath(240),
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_13%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_05%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_15%20AM_result.webp",
+      "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_21%20AM_result.webp",
     ],
     tagline: "Karavali Teak Artisanship & Soaking Tub",
     shortDescription:

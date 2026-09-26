@@ -10,7 +10,7 @@ export const siteConfig = {
   landline: "08387-221221",
   email: "reservation@hotelpumerai.com",
   logo: "https://hotelpumerai.com/pumerai%20logo.png",
-  ogImage: "https://hotelpumerai.com/frames/frame_0001.webp",
+  ogImage: "https://hotelpumerai.com/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_23_21%20AM_result.webp",
   address: {
     streetAddress: "NH-66, near Ramateertha Cross",
     addressLocality: "Honnavar",
@@ -145,8 +145,8 @@ export function generateStructuredData(pathname = "/") {
     telephone: siteConfig.phone,
     email: siteConfig.email,
     image: [
-      `${siteConfig.siteUrl}/frames/frame_0001.webp`,
-      `${siteConfig.siteUrl}/frames/frame_0180.webp`,
+      `${siteConfig.siteUrl}/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_23_21%20AM_result.webp`,
+      `${siteConfig.siteUrl}/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_42%20AM_result.webp`,
     ],
     address: {
       "@type": "PostalAddress",

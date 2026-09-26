@@ -1,4 +1,3 @@
-import { editorialFrames } from "../utils/frames.js";
 
 export const venuesData = [
   {
@@ -7,7 +6,7 @@ export const venuesData = [
     subtitle: "Coastal Karavali Seafood, North Indian & Continental",
     hours: "7:00 AM – 10:30 PM Daily",
     mealTimes: "Breakfast: 7:00–10:30 AM · Lunch: 12:30–3:30 PM · Dinner: 7:00–10:30 PM",
-    image: editorialFrames.matsya,
+    image: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_22_03%20AM_result.webp",
     alt: "Matsya Multicuisine Restaurant dining room at Hotel Pumerai Honnavar",
     description:
       "Matsya brings the rich coastal bounty of Uttara Kannada to your plate. From morning breakfast spreads to fresh daily catch prepared in authentic Karavali spices, tandoori grills, and pan-Asian favorites.",
@@ -51,7 +50,7 @@ export const venuesData = [
     subtitle: "100% Pure Vegetarian South Indian & Coastal Satvik",
     hours: "6:30 AM – 10:00 PM Daily",
     mealTimes: "All-Day Dining · Breakfast: 6:30–11:00 AM · Pure Veg Kitchen",
-    image: editorialFrames.madhura,
+    image: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_23_24%20AM_result.webp",
     alt: "Madhura Pure Vegetarian Restaurant at Hotel Pumerai Honnavar",
     description:
       "A dedicated pure vegetarian sanctuary honoring Karnataka's rich vegetarian culinary heritage. Experience crisp golden dosas, delicate neer dosas, elaborate noon thalis, and freshly ground filter coffee.",
@@ -96,7 +95,7 @@ export const venuesData = [
     subtitle: "Fine Spirits, Coastal Mocktails, Finger Bites & Coffee",
     hours: "11:00 AM – 11:00 PM Daily",
     mealTimes: "Lounge & Evening Cocktails · Coffee & Espresso Bar",
-    image: editorialFrames.madira,
+    image: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_21_55%20AM_result.webp",
     alt: "Madira Bar and Lounge at Hotel Pumerai Honnavar",
     description:
       "An intimate, stylish evening retreat for hotel guests and highway stopover travellers. Unwind over premium spirits, artisanal mocktails made with local wild kokum, gourmet coffee, and savory appetizers.",
