@@ -2,7 +2,7 @@
 const keyFacts = [
   { label: "Property Rating", value: "3-Star Boutique Hotel" },
   { label: "Guest Rooms", value: "40 Contemporary Rooms" },
-  { label: "Dining On-Site", value: "2 Restaurants + Bar & Café" },
+  { label: "Dining On-Site", value: "2 On-Site Restaurants" },
   { label: "Swimming Pool", value: "Indoor + Kids Splash Pool" },
   { label: "Connectivity", value: "Free 100+ Mbps WiFi" },
   { label: "Beach Proximity", value: "~5 km to Kasarkod Eco Beach" },
@@ -37,9 +37,9 @@ export default function About() {
 
             <p className="body-paragraph">
               Featuring 40 thoughtfully designed guestrooms, an indoor glass-edge swimming pool with a children&apos;s
-              splash area (open 6:30 AM–7:00 PM), two on-site restaurants—Matsya (coastal seafood) and Madhura (pure vegetarian)—plus
-              the Madira bar and lounge, free 100+ Mbps WiFi, and secure self-parking with EV charging, our property provides
-              the ideal stopover and vacation haven along Karnataka&apos;s western coast.
+              splash area (open 6:30 AM–7:00 PM), two on-site restaurants—Matsya (coastal seafood) and Madhura (pure vegetarian)—free
+              100+ Mbps WiFi, and secure self-parking with EV charging, our property provides the ideal stopover and vacation
+              haven along Karnataka&apos;s western coast.
             </p>
 
             {/* Factual Highlights Grid */}

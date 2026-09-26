@@ -200,9 +200,8 @@ export default function GallerySection({ isStandalonePage = false, onNavigate })
               </h2>
             </div>
             <div className="header-summary-block">
-              <p className="header-summary">
-                Explore authentic photographs of Hotel Pumerai. From our garden view rooms and glass-edge swimming pool
-                to our coastal restaurants and the lush landscapes of Honnavar.
+              <p className="header-summary gallery-header-summary">
+                Explore Hotel Pumerai through rooms, dining, pool and coastal views.
               </p>
               <div className="gallery-slider-actions">
                 <div className="gallery-nav-arrows" aria-label="Gallery slider controls">
@@ -247,8 +246,6 @@ export default function GallerySection({ isStandalonePage = false, onNavigate })
             <div
               className="gallery-slider-viewport"
               ref={viewportRef}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >

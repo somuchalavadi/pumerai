@@ -4,13 +4,12 @@ const navLinks = [
   { label: "Home", route: "/" },
   { label: "Rooms & Suites", route: "/rooms" },
   { label: "Dining & Menus", route: "/dining" },
-  { label: "Madira Bar & Lounge", route: "/bar-lounge" },
   { label: "Amenities & Pool", route: "/", section: "amenities" },
   { label: "Visual Gallery", route: "/gallery" },
   { label: "Location & Transit", route: "/location" },
   { label: "Guest Reviews", route: "/", section: "reviews" },
   { label: "Direct Offers", route: "/", section: "offers" },
-  { label: "FAQ & Policies", route: "/", section: "faq" },
+  { label: "FAQ & Policies", route: "/faq" },
   { label: "Contact Front Desk", route: "/contact" },
 ];
 
@@ -195,13 +194,26 @@ export default function Footer({ onNavigate }) {
 
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
-          <p className="footer-copy">
-            &copy; 2026 Hotel Pumerai. All rights reserved. &bull; NH-66, near Ramateertha Cross, Honnavar, Karnataka 581334
-          </p>
+          <div className="footer-bottom-info">
+            <p className="footer-copy">
+              &copy; 2026 Hotel Pumerai. All rights reserved. &bull; NH-66, near Ramateertha Cross, Honnavar, Karnataka 581334
+            </p>
+            <p className="footer-credit">
+              Designed &amp; Developed by{" "}
+              <a
+                href="https://dishanwebwing.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-credit-link"
+              >
+                Dishan Web Wings
+              </a>
+            </p>
+          </div>
           <div className="footer-legal-links">
             <a href="/" onClick={(e) => handleNavClick(e, { route: "/", section: "location" })}>Privacy &amp; Policies</a>
             <span className="legal-dot">&bull;</span>
-            <a href="/" onClick={(e) => handleNavClick(e, { route: "/", section: "faq" })}>Cancellation Terms</a>
+            <a href="/faq" onClick={(e) => handleNavClick(e, { route: "/faq" })}>Cancellation &amp; FAQ</a>
             <span className="legal-dot">&bull;</span>
             <a href="/contact" onClick={(e) => handleNavClick(e, { route: "/contact" })}>Contact</a>
           </div>

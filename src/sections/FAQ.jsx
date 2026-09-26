@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { faqList } from "../data/faqs.js";
 
-export default function FAQ() {
+export default function FAQ({ isStandalonePage = false }) {
   const [openIndex, setOpenIndex] = useState(0); // first item open by default
 
   const toggleItem = (index) => {
@@ -11,23 +11,25 @@ export default function FAQ() {
   return (
     <section className="section faq-section" id="faq" aria-labelledby="faq-heading">
       <div className="section-container">
-        {/* Section Header */}
-        <header className="section-header-split" data-reveal>
-          <div className="header-meta">
-            <div className="editorial-tag">
-              <span className="accent-pip" />
-              <span>Frequently Asked Questions</span>
+        {/* Section Header (Homepage only) */}
+        {!isStandalonePage && (
+          <header className="section-header-split" data-reveal>
+            <div className="header-meta">
+              <div className="editorial-tag">
+                <span className="accent-pip" />
+                <span>Frequently Asked Questions</span>
+              </div>
+              <h2 id="faq-heading" className="section-title">
+                Clear answers for <br />
+                <span className="title-italic">a seamless stay.</span>
+              </h2>
             </div>
-            <h2 id="faq-heading" className="section-title">
-              Clear answers for <br />
-              <span className="title-italic">a seamless stay.</span>
-            </h2>
-          </div>
-          <p className="header-summary">
-            Everything you need to know about check-in, pool timings, Kasarkod Beach proximity,
-            dining, and amenities at Hotel Pumerai in Honnavar.
-          </p>
-        </header>
+            <p className="header-summary">
+              Everything you need to know about check-in, pool timings, Kasarkod Beach proximity,
+              dining, and amenities at Hotel Pumerai in Honnavar.
+            </p>
+          </header>
+        )}
 
         {/* Accessible Accordion Stack */}
         <div className="faq-accordion-stack" data-reveal>

@@ -3,7 +3,7 @@ import { venuesData } from "../data/dining.js";
 
 export default function Dining({ sectionId = "dining", headingId = "dining-heading", isStandalonePage = false, onNavigate }) {
   const [activeMenuVenue, setActiveMenuVenue] = useState(null);
-  const restaurantVenues = venuesData.filter((v) => v.id !== "madira");
+  const restaurantVenues = venuesData;
 
   const handleOpenMenu = (venue) => {
     setActiveMenuVenue(venue);

@@ -56,14 +56,14 @@ export const routesMeta = {
       { name: "Dining & Restaurants", url: "https://hotelpumerai.com/dining" },
     ],
   },
-  "/bar-lounge": {
-    title: "Madira Bar & Lounge | Hotel Pumerai, Honnāvar",
+  "/faq": {
+    title: "Hotel Pumerai FAQ | Frequently Asked Questions",
     description:
-      "Unwind at Madira Bar & Lounge at Hotel Pumerai, Honnāvar. Premium spirits, coastal kokum mocktails, espresso coffee, and savory appetizers along NH-66 in Uttara Kannada.",
-    canonical: "https://hotelpumerai.com/bar-lounge",
+      "Find answers to frequently asked questions about Hotel Pumerai, rooms, dining, location, booking and your stay in Honnāvar.",
+    canonical: "https://hotelpumerai.com/faq",
     breadcrumbs: [
       { name: "Home", url: "https://hotelpumerai.com/" },
-      { name: "Madira Bar & Lounge", url: "https://hotelpumerai.com/bar-lounge" },
+      { name: "Frequently Asked Questions", url: "https://hotelpumerai.com/faq" },
     ],
   },
   "/gallery": {
@@ -140,7 +140,7 @@ export function generateStructuredData(pathname = "/") {
     name: siteConfig.name,
     alternateName: siteConfig.alternateNames,
     description:
-      "A 3-star contemporary boutique hotel situated on NH-66 near Ramateertha Cross in Honnavar, Uttara Kannada, Karnataka. Offering 40 air-conditioned rooms, glass-edge swimming pool, coastal multicuisine and pure vegetarian dining, and bar lounge.",
+      "A 3-star contemporary boutique hotel situated on NH-66 near Ramateertha Cross in Honnavar, Uttara Kannada, Karnataka. Offering 40 air-conditioned rooms, glass-edge swimming pool, coastal multicuisine and pure vegetarian dining.",
     url: siteConfig.siteUrl,
     telephone: siteConfig.phone,
     email: siteConfig.email,
@@ -181,7 +181,6 @@ export function generateStructuredData(pathname = "/") {
       { "@type": "LocationFeatureSpecification", name: "Electric Vehicle (EV) Charging Station", value: true },
       { "@type": "LocationFeatureSpecification", name: "On-Site Matsya Multi-Cuisine Restaurant", value: true },
       { "@type": "LocationFeatureSpecification", name: "On-Site Madhura Pure Veg Restaurant", value: true },
-      { "@type": "LocationFeatureSpecification", name: "On-Site Madira Bar & Lounge", value: true },
       { "@type": "LocationFeatureSpecification", name: "100% Smoke-Free Indoor Rooms", value: true },
       { "@type": "LocationFeatureSpecification", name: "Air Conditioning", value: true },
       { "@type": "LocationFeatureSpecification", name: "Acoustic Soundproofing", value: true },
@@ -201,8 +200,8 @@ export function generateStructuredData(pathname = "/") {
 
   const schemas = [organizationSchema, hotelSchema, breadcrumbsSchema];
 
-  // Include FAQPage on Home and Location routes
-  if (pathname === "/" || pathname === "/location") {
+  // Include FAQPage on Home, Location, and FAQ routes
+  if (pathname === "/" || pathname === "/location" || pathname === "/faq") {
     schemas.push({
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -217,8 +216,8 @@ export function generateStructuredData(pathname = "/") {
     });
   }
 
-  // Include Restaurant schemas on Dining, Bar-Lounge, and Home
-  if (pathname === "/dining" || pathname === "/" || pathname === "/bar-lounge") {
+  // Include Restaurant schemas on Dining and Home
+  if (pathname === "/dining" || pathname === "/") {
     schemas.push(
       {
         "@context": "https://schema.org",
@@ -241,18 +240,6 @@ export function generateStructuredData(pathname = "/") {
         servesCuisine: ["Pure Vegetarian", "South Indian", "Coastal Satvik"],
         openingHours: "Mo-Su 06:30-22:00",
         priceRange: "₹",
-        telephone: siteConfig.phone,
-        address: hotelSchema.address,
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "BarOrPub",
-        "@id": "https://hotelpumerai.com/bar-lounge#madira",
-        name: "Madira Bar & Lounge",
-        parentOrganization: { "@id": "https://hotelpumerai.com/#hotel" },
-        servesCuisine: ["Cocktails", "Spirits", "Espresso Coffee", "Small Plates"],
-        openingHours: "Mo-Su 11:00-23:00",
-        priceRange: "₹₹",
         telephone: siteConfig.phone,
         address: hotelSchema.address,
       }

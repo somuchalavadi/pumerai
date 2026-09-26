@@ -5,7 +5,7 @@ export const faqList = [
   },
   {
     q: "What type of hotel is Hotel Pumerai and what facilities are provided?",
-    a: "Hotel Pumerai is a 3-star contemporary boutique hotel in Honnāvar offering 40 air-conditioned guestrooms across seven distinct categories, an indoor temperature-balanced swimming pool with children's splash pool, two on-site restaurants, a bar and lounge, complimentary 100+ Mbps Wi-Fi, and free private parking with EV charging.",
+    a: "Hotel Pumerai is a 3-star contemporary boutique hotel in Honnāvar offering 40 air-conditioned guestrooms across seven distinct categories, an indoor temperature-balanced swimming pool with children's splash pool, two on-site restaurants, complimentary 100+ Mbps Wi-Fi, and free private parking with EV charging.",
   },
   {
     q: "Is Hotel Pumerai near Murudeshwar and Bhatkal?",
@@ -22,10 +22,6 @@ export const faqList = [
   {
     q: "What restaurants and dining options are available at Hotel Pumerai?",
     a: "Hotel Pumerai features two distinct on-site restaurants: Matsya Multi-Cuisine Restaurant serving coastal Karavali seafood, North Indian dishes, and tandoori grills, and Madhura Pure Veg Restaurant offering traditional South Indian breakfasts and authentic vegetarian thalis.",
-  },
-  {
-    q: "Does Hotel Pumerai have an on-site bar and lounge?",
-    a: "Yes. Madira Bar & Lounge at Hotel Pumerai is open daily from 11:00 AM to 11:00 PM, serving fine spirits, artisanal mocktails with native wild kokum, gourmet espresso coffee, and small plate lounge appetizers.",
   },
   {
     q: "How can I book a room directly at Hotel Pumerai in Honnavar?",

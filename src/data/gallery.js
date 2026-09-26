@@ -16,12 +16,12 @@ export const galleryCategories = [
 export const galleryItems = [
   {
     id: 1,
-    category: "dining",
-    categoryLabel: "Dining",
-    title: "Madira Bar & Lounge Entrance",
+    category: "lobby",
+    categoryLabel: "Lobby",
+    title: "Boutique Illuminated Entrance Portal",
     src: "/gallery/ChatGPT%20Image%20Sep%2026,%202026,%2012_21_55%20AM_result.webp",
-    alt: "Madira Bar and Lounge illuminated entrance archway at Hotel Pumerai Honnavar",
-    caption: "Warmly illuminated arched portal welcoming guests to Madira Bar & Lounge.",
+    alt: "Illuminated architectural archway at Hotel Pumerai Honnavar",
+    caption: "Warmly illuminated arched portal welcoming guests to Hotel Pumerai.",
   },
   {
     id: 2,

@@ -8,7 +8,7 @@ import DiningPage from "./components/DiningPage.jsx";
 import GalleryPage from "./components/GalleryPage.jsx";
 import LocationPage from "./components/LocationPage.jsx";
 import ContactPage from "./components/ContactPage.jsx";
-import BarLoungePage from "./components/BarLoungePage.jsx";
+import FAQPage from "./components/FAQPage.jsx";
 import SEOHead from "./components/SEOHead.jsx";
 import HeroSequence from "./sections/HeroSequence.jsx";
 import About from "./sections/About.jsx";
@@ -19,11 +19,10 @@ import DiningPreview from "./sections/DiningPreview.jsx";
 import TrustReviews from "./sections/TrustReviews.jsx";
 import GallerySection from "./sections/GallerySection.jsx";
 import Location from "./sections/Location.jsx";
-import FAQ from "./sections/FAQ.jsx";
 import WebsiteLoader from "./components/WebsiteLoader.jsx";
 import { useSectionReveals } from "./hooks/useSectionReveals.js";
 
-const routes = new Set(["/", "/rooms", "/dining", "/bar-lounge", "/gallery", "/location", "/contact"]);
+const routes = new Set(["/", "/rooms", "/dining", "/gallery", "/location", "/contact", "/faq"]);
 
 function normalizePath(path) {
   return routes.has(path) ? path : "/";
@@ -42,7 +41,6 @@ function HomePage({ onNavigate }) {
       <TrustReviews />
       <GallerySection onNavigate={onNavigate} />
       <Location />
-      <FAQ />
     </main>
   );
 }
@@ -108,14 +106,14 @@ function App() {
       <RoomsPage />
     ) : path === "/dining" ? (
       <DiningPage onNavigate={navigate} />
-    ) : path === "/bar-lounge" ? (
-      <BarLoungePage onNavigate={navigate} />
     ) : path === "/gallery" ? (
       <GalleryPage />
     ) : path === "/location" ? (
       <LocationPage />
     ) : path === "/contact" ? (
       <ContactPage />
+    ) : path === "/faq" ? (
+      <FAQPage onNavigate={navigate} />
     ) : (
       <HomePage onNavigate={navigate} />
     );
