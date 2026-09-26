@@ -1,16 +1,11 @@
 import LogoMark from "./LogoMark.jsx";
 
-const navLinks = [
-  { label: "Home", route: "/" },
-  { label: "Rooms & Suites", route: "/rooms" },
-  { label: "Dining & Menus", route: "/dining" },
-  { label: "Amenities & Pool", route: "/", section: "amenities" },
-  { label: "Visual Gallery", route: "/gallery" },
-  { label: "Location & Transit", route: "/location" },
-  { label: "Guest Reviews", route: "/", section: "reviews" },
-  { label: "Direct Offers", route: "/", section: "offers" },
-  { label: "FAQ & Policies", route: "/faq" },
-  { label: "Contact Front Desk", route: "/contact" },
+const exploreLinks = [
+  { label: "Rooms", route: "/rooms" },
+  { label: "Dining", route: "/dining" },
+  { label: "Gallery", route: "/gallery" },
+  { label: "Location", route: "/location" },
+  { label: "FAQ", route: "/faq" },
 ];
 
 export default function Footer({ onNavigate }) {
@@ -32,7 +27,7 @@ export default function Footer({ onNavigate }) {
   return (
     <footer className="site-footer" id="footer" aria-label="Site Footer">
       <div className="footer-container">
-        {/* Top Brand Banner */}
+        {/* Top Brand & Primary WhatsApp CTA */}
         <div className="footer-top-brand">
           <div className="footer-brand-lockup">
             <a
@@ -46,37 +41,32 @@ export default function Footer({ onNavigate }) {
             </a>
             <p className="footer-tagline">
               A 3-star boutique hotel on NH-66 near Ramateertha Cross, Honnavar, Karnataka 581334.
-              40 contemporary guestrooms, glass-edge swimming pool, and authentic Karavali dining.
             </p>
           </div>
 
-          <div className="footer-badges-group">
-            <div className="footer-score-pill">
-              <span className="badge-rating-val">4.7 / 5</span>
-              <span className="badge-rating-text">Google Reviews</span>
-            </div>
+          <div className="footer-cta-wrap">
             <button
               type="button"
               className="button-primary footer-book-btn"
               onClick={handleOpenBooking}
             >
-              BOOK DIRECT ON WHATSAPP
+              BOOK ON WHATSAPP
             </button>
           </div>
         </div>
 
         <div className="footer-brass-divider" />
 
-        {/* Main 4-Column Footer Grid */}
+        {/* Main 3-Column Footer Grid */}
         <div className="footer-main-grid">
           {/* Col 1: Explore Navigation */}
           <nav className="footer-col" aria-label="Footer navigation links">
-            <h4 className="footer-col-title">Explore Pumerai</h4>
+            <h4 className="footer-col-title">Explore</h4>
             <div className="footer-nav-links">
-              {navLinks.map((item) => (
+              {exploreLinks.map((item) => (
                 <a
-                  key={`${item.route}-${item.section || item.label}`}
-                  href={item.section ? `/#${item.section}` : item.route}
+                  key={item.route}
+                  href={item.route}
                   className="footer-nav-link"
                   onClick={(e) => handleNavClick(e, item)}
                 >
@@ -86,13 +76,13 @@ export default function Footer({ onNavigate }) {
             </div>
           </nav>
 
-          {/* Col 2: Full Contact Block with semantic <address> */}
+          {/* Col 2: Contact Information */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Reservations &amp; Contact</h4>
+            <h4 className="footer-col-title">Contact</h4>
             <address className="footer-contact-block">
               <div className="footer-contact-item">
                 <span className="contact-label">Direct Reservations</span>
-                <a href="tel:+919845423223" className="contact-link phone-link">
+                <a href="tel:+919845423223" className="contact-link">
                   +91 98454 23223
                 </a>
               </div>
@@ -105,87 +95,60 @@ export default function Footer({ onNavigate }) {
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">WhatsApp Instant Chat</span>
+                <span className="contact-label">WhatsApp</span>
                 <a
                   href="https://wa.me/919845423223?text=Hi%20Hotel%20Pumerai%2C%20I%20would%20like%20to%20inquire%20about%20room%20availability"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-link whatsapp-footer-link"
+                  className="contact-link"
                 >
-                  +91 98454 23223 (Click to Chat)
+                  +91 98454 23223
                 </a>
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">Email Reservations</span>
+                <span className="contact-label">Email</span>
                 <a href="mailto:reservation@hotelpumerai.com" className="contact-link">
                   reservation@hotelpumerai.com
                 </a>
               </div>
 
               <div className="footer-contact-item">
-                <span className="contact-label">Property Address</span>
-                <p className="contact-address-text">
-                  Hotel Pumerai, NH-66, near Ramateertha Cross,
-                  <br />
-                  Honnavar, Uttara Kannada,
-                  <br />
-                  Karnataka 581334, India
-                </p>
+                <span className="contact-label">Address</span>
+                <a
+                  href={officialGoogleMapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-link contact-address-link"
+                >
+                  Hotel Pumerai, NH-66, near Ramateertha Cross, Honnavar 581334
+                </a>
               </div>
             </address>
           </div>
 
-          {/* Col 3: Location Thumbnail & Deep Links */}
+          {/* Col 3: Location Context & Transit */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Location &amp; Directions</h4>
-            <div className="footer-map-card">
+            <h4 className="footer-col-title">Location</h4>
+            <div className="footer-location-block">
+              <p className="footer-location-context">
+                Hotel Pumerai, NH-66, near Ramateertha Cross,
+                <br />
+                Honnavar, Uttara Kannada, Karnataka 581334
+              </p>
               <a
                 href={officialGoogleMapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="map-thumbnail-link"
+                className="footer-directions-link"
                 aria-label="Get Directions to Hotel Pumerai on Google Maps"
               >
-                <div className="map-thumb-preview">
-                  <div className="map-pin-pulse">
-                    <span className="pin-dot" />
-                    <span className="pin-ring" />
-                  </div>
-                  <div className="map-thumb-overlay">
-                    <span className="map-btn-text">Get Directions &rarr;</span>
-                  </div>
-                </div>
+                Get Directions &rarr;
               </a>
               <ul className="footer-distances-list">
                 <li>&bull; ~5 km from Kasarkod Eco Beach</li>
-                <li>&bull; ~2.8 km from Sharavati River</li>
-                <li>&bull; ~3.5 km from Honnavar Station</li>
+                <li>&bull; ~2.8 km from Sharavati River (~3.5 km from Station)</li>
               </ul>
-              <a
-                href={officialGoogleMapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button-secondary"
-                style={{ fontSize: "0.75rem", padding: "8px 12px", textAlign: "center", marginTop: "4px" }}
-              >
-                📍 Open in Maps
-              </a>
-            </div>
-          </div>
-
-          {/* Col 4: Verified Stays & Travel OTA Partners */}
-          <div className="footer-col">
-            <h4 className="footer-col-title">Verified Reputation</h4>
-            <p className="footer-partner-copy">
-              Rated 4.7/5 on Google based on 237 guest reviews.
-              Book directly with our front desk for personal assistance, free breakfast, and flexible cancellation.
-            </p>
-            <div className="footer-trust-chips">
-              <span className="trust-chip">&#x2713; Google Business Verified</span>
-              <span className="trust-chip">&#x2713; 4.7/5 Guest Rating</span>
-              <span className="trust-chip">&#x2713; Direct Front Desk Support</span>
-              <span className="trust-chip">&#x2713; 24-Hour Secured Parking</span>
             </div>
           </div>
         </div>
@@ -211,7 +174,7 @@ export default function Footer({ onNavigate }) {
             </p>
           </div>
           <div className="footer-legal-links">
-            <a href="/" onClick={(e) => handleNavClick(e, { route: "/", section: "location" })}>Privacy &amp; Policies</a>
+            <a href="/location" onClick={(e) => handleNavClick(e, { route: "/location" })}>Privacy &amp; Policies</a>
             <span className="legal-dot">&bull;</span>
             <a href="/faq" onClick={(e) => handleNavClick(e, { route: "/faq" })}>Cancellation &amp; FAQ</a>
             <span className="legal-dot">&bull;</span>
